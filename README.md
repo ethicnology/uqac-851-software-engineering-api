@@ -1,8 +1,8 @@
 ## About The Project
-[![PrixBanque][product-screenshot]](https://github.com/851-software-engineering/PrixBanque-api/doc/logo.png)
+![](https://github.com/851-software-engineering/PrixBanque-api/blob/main/doc/logo.png "Screenshot")
 
 This is a school project.  
-All the specifications are specified in doc/Projet_Pratique.pdf
+All the specifications are specified in [doc/Projet_Pratique.pdf](https://github.com/851-software-engineering/PrixBanque-api/blob/main/doc/Projet_Pratique.pdf)
 
 ### Built With
 * [Golang](https://golang.org)  
