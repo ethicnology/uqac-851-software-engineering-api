@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/851-software-engineering/PrixBanque-api/http/route"
+	"github.com/ethicnology/uqac-851-software-engineering-api/http/route"
 
 	"goyave.dev/goyave/v3"
 	"goyave.dev/goyave/v3/validation"

@@ -1,7 +1,7 @@
 package route
 
 import (
-	"github.com/851-software-engineering/PrixBanque-api/http/controller/hello"
+	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/hello"
 
 	"goyave.dev/goyave/v3"
 	"goyave.dev/goyave/v3/cors"

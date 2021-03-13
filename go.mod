@@ -1,9 +1,5 @@
-module github.com/851-software-engineering/PrixBanque-api
+module github.com/ethicnology/uqac-851-software-engineering-api
 
 go 1.13
 
-require (
-	github.com/imdario/mergo v0.3.12 // indirect
-	gorm.io/gorm v1.21.3 // indirect
-	goyave.dev/goyave/v3 v3.7.1
-)
+require goyave.dev/goyave/v3 v3.7.1

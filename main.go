@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/851-software-engineering/PrixBanque-api/http/route"
-	_ "github.com/851-software-engineering/PrixBanque-api/http/validation"
+	"github.com/ethicnology/uqac-851-software-engineering-api/http/route"
+	_ "github.com/ethicnology/uqac-851-software-engineering-api/http/validation"
 
 	"goyave.dev/goyave/v3"
 	_ "goyave.dev/goyave/v3/database/dialect/mysql"

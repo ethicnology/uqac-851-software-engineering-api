@@ -1,8 +1,8 @@
 ## About The Project
-![](https://github.com/851-software-engineering/PrixBanque-api/blob/main/doc/logo.png "Screenshot")
+![](https://github.com/ethicnology/uqac-851-software-engineering-api/blob/main/doc/logo.png "Screenshot")
 
 This is a school project.  
-All the specifications are specified in [doc/Projet_Pratique.pdf](https://github.com/851-software-engineering/PrixBanque-api/blob/main/doc/Projet_Pratique.pdf)
+All the specifications are specified in [doc/Projet_Pratique.pdf](https://github.com/ethicnology/uqac-851-software-engineering-api/blob/main/doc/Projet_Pratique.pdf)
 
 ### Built With
 * [Golang](https://golang.org)  
@@ -51,7 +51,7 @@ To get a local copy up and running follow these simple example steps.
 ### Installation
 1. Clone the repo
    ```sh
-   git clone https://github.com/851-software-engineering/PrixBanque-api.git
+   git clone https://github.com/ethicnology/uqac-851-software-engineering-api.git
    ```
 2. Create your own `config.json`
    ```JSON
