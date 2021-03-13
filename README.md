@@ -55,75 +55,47 @@ To get a local copy up and running follow these simple example steps.
    ```
 2. Create your own `config.json`
    ```JSON
-    {
-        "app": {
-            "name": "PrixBanque-api",
-            "environment": "localhost",
-            "debug": true,
-            "defaultLanguage": "en-US"
-        },
-        "server": {
-            "host": "127.0.0.1",
-            "maintenance": false,
-            "protocol": "http",
-            "domain": "",
-            "port": 8080,
-            "httpsPort": 8081,
-            "timeout": 10,
-            "maxUploadSize": 10,
-            "tls": {
-                "cert": "",
-                "key": ""
-            }
-        },
-        "database": {
-            "connection": "mysql",
-            "host": "127.0.0.1",
-            "port": 3306,
-            "name": "PrixBanque-db",
-            "username": "root",
-            "password": "root",
-            "options": "charset=utf8mb4&collation=utf8mb4_general_ci&parseTime=true&loc=Local",
-            "maxOpenConnections": 20,
-            "maxIdleConnections": 20,
-            "maxLifetime": 300,
-            "autoMigrate": false
+{
+    "app": {
+        "name": "PrixBanque-api",
+        "environment": "localhost",
+        "debug": true,
+        "defaultLanguage": "en-US"
+    },
+    "server": {
+        "host": "127.0.0.1",
+        "maintenance": false,
+        "protocol": "http",
+        "domain": "",
+        "port": 8080,
+        "httpsPort": 8081,
+        "timeout": 10,
+        "maxUploadSize": 10,
+        "tls": {
+            "cert": "",
+            "key": ""
         }
-    }{
-        "app": {
-            "name": "PrixBanque-api",
-            "environment": "localhost",
-            "debug": true,
-            "defaultLanguage": "en-US"
-        },
-        "server": {
-            "host": "127.0.0.1",
-            "maintenance": false,
-            "protocol": "http",
-            "domain": "",
-            "port": 8080,
-            "httpsPort": 8081,
-            "timeout": 10,
-            "maxUploadSize": 10,
-            "tls": {
-                "cert": "",
-                "key": ""
-            }
-        },
-        "database": {
-            "connection": "mysql",
-            "host": "127.0.0.1",
-            "port": 3306,
-            "name": "PrixBanque-db",
-            "username": "root",
-            "password": "root",
-            "options": "charset=utf8mb4&collation=utf8mb4_general_ci&parseTime=true&loc=Local",
-            "maxOpenConnections": 20,
-            "maxIdleConnections": 20,
-            "maxLifetime": 300,
-            "autoMigrate": false
+    },
+    "database": {
+        "connection": "mysql",
+        "host": "127.0.0.1",
+        "port": 3306,
+        "name": "PrixBanque-db",
+        "username": "root",
+        "password": "root",
+        "options": "charset=utf8mb4&collation=utf8mb4_general_ci&parseTime=true&loc=Local",
+        "maxOpenConnections": 20,
+        "maxIdleConnections": 20,
+        "maxLifetime": 300,
+        "autoMigrate": false
+    },
+    "auth": {
+        "jwt": {
+            "expiry": 3600,
+            "secret": "secret"
         }
-    }
+    }    
+}
    ```
 3. Install NPM packages
    ```sh
