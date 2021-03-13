@@ -1,0 +1,194 @@
+[
+  {
+    "name": "prix-banque",
+    "folders": [],
+    "requests": [
+      {
+        "url": "http://127.0.0.1:1984",
+        "path": "/auth/register",
+        "method": "POST",
+        "auth": "None",
+        "httpUser": "",
+        "httpPassword": "",
+        "passwordFieldType": "password",
+        "bearerToken": "",
+        "headers": [],
+        "params": [],
+        "bodyParams": [
+          {
+            "key": "email",
+            "value": "b@a.fr",
+            "active": true
+          },
+          {
+            "key": "password",
+            "value": "rand0m",
+            "active": true
+          }
+        ],
+        "rawParams": "{}",
+        "rawInput": false,
+        "contentType": "application/json",
+        "requestType": "curl",
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');",
+        "name": "Register",
+        "collection": 1
+      },
+      {
+        "url": "http://127.0.0.1:1984",
+        "path": "/auth/login",
+        "method": "POST",
+        "auth": "None",
+        "httpUser": "",
+        "httpPassword": "",
+        "passwordFieldType": "password",
+        "bearerToken": "",
+        "headers": [],
+        "params": [],
+        "bodyParams": [
+          {
+            "key": "email",
+            "value": "b@a.fr",
+            "active": true
+          },
+          {
+            "key": "password",
+            "value": "rand0m",
+            "active": true
+          }
+        ],
+        "rawParams": "{}",
+        "rawInput": false,
+        "contentType": "application/json",
+        "requestType": "curl",
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');",
+        "name": "Login (JWT)",
+        "collection": 1
+      },
+      {
+        "url": "http://127.0.0.1:1984",
+        "path": "/users/3",
+        "method": "GET",
+        "auth": "Bearer Token",
+        "httpUser": "",
+        "httpPassword": "",
+        "passwordFieldType": "password",
+        "bearerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU2Nzg5NDksIm5iZiI6MTYxNTY3NTM0OSwidXNlcmlkIjoiYkBhLmZyIn0.HVkWBdpL1lvvFuHHlMoq_xy2jD5VMslCo8sG_YRKVg0",
+        "headers": [],
+        "params": [],
+        "bodyParams": [
+          {
+            "key": "email",
+            "value": "b@a.fr",
+            "active": true
+          },
+          {
+            "key": "password",
+            "value": "rand0m",
+            "active": true
+          }
+        ],
+        "rawParams": "",
+        "rawInput": true,
+        "contentType": "",
+        "requestType": "curl",
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');",
+        "name": "Get user",
+        "collection": 1
+      },
+      {
+        "url": "http://127.0.0.1:1984",
+        "path": "/users",
+        "method": "GET",
+        "auth": "Bearer Token",
+        "httpUser": "",
+        "httpPassword": "",
+        "passwordFieldType": "password",
+        "bearerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU2NzgzODUsIm5iZiI6MTYxNTY3NDc4NSwidXNlcmlkIjoiYUBhLmZyIn0.pC2FzsRiV8KTTZy65KZD-TplWyBlb9FnpGiSaQfbyhU",
+        "headers": [],
+        "params": [],
+        "bodyParams": [
+          {
+            "key": "email",
+            "value": "b@a.fr",
+            "active": true
+          },
+          {
+            "key": "password",
+            "value": "rand0m",
+            "active": true
+          }
+        ],
+        "rawParams": "",
+        "rawInput": true,
+        "contentType": "",
+        "requestType": "curl",
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');",
+        "name": "Get users",
+        "collection": 1
+      },
+      {
+        "url": "http://127.0.0.1:1984",
+        "path": "/users/1",
+        "method": "PATCH",
+        "auth": "Bearer Token",
+        "httpUser": "",
+        "httpPassword": "",
+        "passwordFieldType": "password",
+        "bearerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU2NzgzODUsIm5iZiI6MTYxNTY3NDc4NSwidXNlcmlkIjoiYUBhLmZyIn0.pC2FzsRiV8KTTZy65KZD-TplWyBlb9FnpGiSaQfbyhU",
+        "headers": [],
+        "params": [],
+        "bodyParams": [
+          {
+            "key": "email",
+            "value": "b@a.fr",
+            "active": true
+          },
+          {
+            "key": "first_name",
+            "value": "Léon",
+            "active": true
+          },
+          {
+            "key": "last_name",
+            "value": "De la rue",
+            "active": true
+          }
+        ],
+        "rawParams": "{}",
+        "rawInput": false,
+        "contentType": "application/json",
+        "requestType": "curl",
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');",
+        "name": "Patch user",
+        "collection": 1
+      },
+      {
+        "url": "http://127.0.0.1:1984",
+        "path": "/users/1",
+        "method": "DELETE",
+        "auth": "Bearer Token",
+        "httpUser": "",
+        "httpPassword": "",
+        "passwordFieldType": "password",
+        "bearerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU2NzgzODUsIm5iZiI6MTYxNTY3NDc4NSwidXNlcmlkIjoiYUBhLmZyIn0.pC2FzsRiV8KTTZy65KZD-TplWyBlb9FnpGiSaQfbyhU",
+        "headers": [],
+        "params": [],
+        "bodyParams": [],
+        "rawParams": "{}",
+        "rawInput": false,
+        "contentType": "application/json",
+        "requestType": "curl",
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');",
+        "name": "Delete user",
+        "collection": 1
+      }
+    ]
+  }
+]
