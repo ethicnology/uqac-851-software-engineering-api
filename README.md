@@ -53,8 +53,8 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    git clone https://github.com/ethicnology/uqac-851-software-engineering-api.git
    ```
-2. Create your own `config.json`
-   ```JSON
+2. Create your own **config.json**
+  ```JSON
 {
     "app": {
         "name": "PrixBanque-api",
@@ -96,7 +96,8 @@ To get a local copy up and running follow these simple example steps.
         }
     }    
 }
-   ```
+```
+
 3. Install NPM packages
    ```sh
    go run .
