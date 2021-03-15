@@ -30,7 +30,7 @@ type User struct {
 	DeletedAt gorm.DeletedAt `json:"deleted_at"`
 	ID        uint           `json:"id" gorm:"primarykey"`
 	Email     string         `json:"email" gorm:"type:char(100);uniqueIndex;not null" auth:"username"`
-	Password  string         `json:"password" gorm:"size:64;not null" auth:"password" json:"-"`
+	Password  string         `json:"-" gorm:"size:64;not null" auth:"password" json:"-"`
 	FirstName string         `json:"first_name"`
 	LastName  string         `json:"last_name"`
 }
