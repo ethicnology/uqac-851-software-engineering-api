@@ -13,12 +13,12 @@
 [
   {
     "key": "email",
-    "value": "b@a.fr",
+    "value": "a@a.fr",
     "active": true
   },
   {
     "key": "password",
-    "value": "rand0m",
+    "value": "a441b15fe9a3cf56661190a0b93b9dec7d04127288cc87250967cf3b52894d11",
     "active": true
   }
 ]
@@ -47,12 +47,12 @@
 [
   {
     "key": "email",
-    "value": "b@a.fr",
+    "value": "a@b.fr",
     "active": true
   },
   {
     "key": "password",
-    "value": "rand0m",
+    "value": "a441b15fe9a3cf56661190a0b93b9dec7d04127288cc87250967cf3b52894d11",
     "active": true
   }
 ]
@@ -71,43 +71,10 @@
 ---
 ### Get user
  - url: http://127.0.0.1:1984
- - path: /users/3
+ - path: /users/a@a.fr
  - method: GET
  - passwordFieldType: password
- - bearerToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU2Nzg5NDksIm5iZiI6MTYxNTY3NTM0OSwidXNlcmlkIjoiYkBhLmZyIn0.HVkWBdpL1lvvFuHHlMoq_xy2jD5VMslCo8sG_YRKVg0
-
-
- - bodyParams:
-```json
-[
-  {
-    "key": "email",
-    "value": "b@a.fr",
-    "active": true
-  },
-  {
-    "key": "password",
-    "value": "rand0m",
-    "active": true
-  }
-]
-```
- - requestType: curl
- - preRequestScript:
-```javascript
-// pw.env.set('variable', 'value');
-```
- - testScript:
-```javascript
-// pw.expect('variable').toBe('value');
-```
----
-### Get users
- - url: http://127.0.0.1:1984
- - path: /users
- - method: GET
- - passwordFieldType: password
- - bearerToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU2NzgzODUsIm5iZiI6MTYxNTY3NDc4NSwidXNlcmlkIjoiYUBhLmZyIn0.pC2FzsRiV8KTTZy65KZD-TplWyBlb9FnpGiSaQfbyhU
+ - bearerToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTE5NTAyMDUsIm5iZiI6MTYxNTk1MDIwNSwidXNlcmlkIjoiYUBhLmZyIn0.3ZF8QhgmoN_z6zF8r1PSjL2jTcJpdQUYzupsDtolcSM
 
 
  - bodyParams:
@@ -137,10 +104,10 @@
 ---
 ### Patch user
  - url: http://127.0.0.1:1984
- - path: /users/1
+ - path: /users/a@a.fr
  - method: PATCH
  - passwordFieldType: password
- - bearerToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU2NzgzODUsIm5iZiI6MTYxNTY3NDc4NSwidXNlcmlkIjoiYUBhLmZyIn0.pC2FzsRiV8KTTZy65KZD-TplWyBlb9FnpGiSaQfbyhU
+ - bearerToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTE5NTAyMDUsIm5iZiI6MTYxNTk1MDIwNSwidXNlcmlkIjoiYUBhLmZyIn0.3ZF8QhgmoN_z6zF8r1PSjL2jTcJpdQUYzupsDtolcSM
 
 
  - bodyParams:
@@ -148,7 +115,7 @@
 [
   {
     "key": "email",
-    "value": "b@a.fr",
+    "value": "a@a.fr",
     "active": true
   },
   {
@@ -177,10 +144,10 @@
 ---
 ### Delete user
  - url: http://127.0.0.1:1984
- - path: /users/1
+ - path: /users/a@a.fr
  - method: DELETE
  - passwordFieldType: password
- - bearerToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU2NzgzODUsIm5iZiI6MTYxNTY3NDc4NSwidXNlcmlkIjoiYUBhLmZyIn0.pC2FzsRiV8KTTZy65KZD-TplWyBlb9FnpGiSaQfbyhU
+ - bearerToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTE5NTAyMDUsIm5iZiI6MTYxNTk1MDIwNSwidXNlcmlkIjoiYUBhLmZyIn0.3ZF8QhgmoN_z6zF8r1PSjL2jTcJpdQUYzupsDtolcSM
 
 
 
