@@ -3,6 +3,7 @@ package route
 import (
 	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/user"
+	"github.com/ethicnology/uqac-851-software-engineering-api/http/middleware"
 
 	"goyave.dev/goyave/v3"
 	"goyave.dev/goyave/v3/auth"
@@ -30,8 +31,7 @@ func UserRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 
 	userRouter := parent.Subrouter("/users")
 	userRouter.Middleware(authenticator)
-	userRouter.Get("/", user.Index)
-	userRouter.Get("/{id}", user.Show)
-	userRouter.Patch("/{id}", user.Update)
-	userRouter.Delete("/{id}", user.Destroy)
+	userRouter.Get("/{email}", user.Show).Middleware(middleware.Owner)
+	userRouter.Patch("/{email}", user.Update).Middleware(middleware.Owner)
+	userRouter.Delete("/{email}", user.Destroy).Middleware(middleware.Owner)
 }
