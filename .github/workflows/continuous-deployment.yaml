@@ -25,4 +25,4 @@ jobs:
         username: ${{ secrets.VPSUSER }}
         key: ${{ secrets.SSHPRIVATE }}
         port: ${{ secrets.VPSPORT }}
-        script: cd ${{ secrets.VPSPATH }} && ls
+        script: cd ${{ secrets.VPSPATH }} && go build 
