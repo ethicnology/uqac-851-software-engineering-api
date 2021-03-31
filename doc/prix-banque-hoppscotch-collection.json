@@ -4,7 +4,7 @@
     "folders": [],
     "requests": [
       {
-        "url": "http://127.0.0.1:1984",
+        "url": "http://172.20.0.3:1984",
         "path": "/auth/register",
         "method": "POST",
         "auth": "None",
@@ -30,13 +30,13 @@
         "rawInput": false,
         "contentType": "application/json",
         "requestType": "curl",
-        "preRequestScript": "// pw.env.set('variable', 'value');",
-        "testScript": "// pw.expect('variable').toBe('value');",
         "name": "Register",
-        "collection": 1
+        "collection": 1,
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');"
       },
       {
-        "url": "http://127.0.0.1:1984",
+        "url": "http://172.20.0.3:1984",
         "path": "/auth/login",
         "method": "POST",
         "auth": "None",
@@ -49,7 +49,7 @@
         "bodyParams": [
           {
             "key": "email",
-            "value": "a@b.fr",
+            "value": "a@a.fr",
             "active": true
           },
           {
@@ -62,13 +62,13 @@
         "rawInput": false,
         "contentType": "application/json",
         "requestType": "curl",
-        "preRequestScript": "// pw.env.set('variable', 'value');",
-        "testScript": "// pw.expect('variable').toBe('value');",
         "name": "Login (JWT)",
-        "collection": 1
+        "collection": 1,
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');"
       },
       {
-        "url": "http://127.0.0.1:1984",
+        "url": "http://172.20.0.3:1984",
         "path": "/users/a@a.fr",
         "method": "GET",
         "auth": "Bearer Token",
@@ -94,13 +94,13 @@
         "rawInput": true,
         "contentType": "",
         "requestType": "curl",
-        "preRequestScript": "// pw.env.set('variable', 'value');",
-        "testScript": "// pw.expect('variable').toBe('value');",
         "name": "Get user",
-        "collection": 1
+        "collection": 1,
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');"
       },
       {
-        "url": "http://127.0.0.1:1984",
+        "url": "http://172.20.0.3:1984",
         "path": "/users/a@a.fr",
         "method": "PATCH",
         "auth": "Bearer Token",
@@ -131,13 +131,13 @@
         "rawInput": false,
         "contentType": "application/json",
         "requestType": "curl",
-        "preRequestScript": "// pw.env.set('variable', 'value');",
-        "testScript": "// pw.expect('variable').toBe('value');",
         "name": "Patch user",
-        "collection": 1
+        "collection": 1,
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');"
       },
       {
-        "url": "http://127.0.0.1:1984",
+        "url": "http://172.20.0.3:1984",
         "path": "/users/a@a.fr",
         "method": "DELETE",
         "auth": "Bearer Token",
@@ -152,11 +152,12 @@
         "rawInput": false,
         "contentType": "application/json",
         "requestType": "curl",
-        "preRequestScript": "// pw.env.set('variable', 'value');",
-        "testScript": "// pw.expect('variable').toBe('value');",
         "name": "Delete user",
-        "collection": 1
+        "collection": 1,
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');"
       }
-    ]
+    ],
+    "collectionIndex": 1
   }
 ]
