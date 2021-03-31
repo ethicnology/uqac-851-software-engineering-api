@@ -4,7 +4,7 @@
     "folders": [],
     "requests": [
       {
-        "url": "http://127.0.0.1:1984",
+        "url": "http://172.20.0.3:1984",
         "path": "/auth/register",
         "method": "POST",
         "auth": "None",
@@ -17,12 +17,12 @@
         "bodyParams": [
           {
             "key": "email",
-            "value": "b@a.fr",
+            "value": "a@b.fr",
             "active": true
           },
           {
             "key": "password",
-            "value": "rand0m",
+            "value": "a441b15fe9a3cf56661190a0b93b9dec7d04127288cc87250967cf3b52894d11",
             "active": true
           }
         ],
@@ -30,13 +30,13 @@
         "rawInput": false,
         "contentType": "application/json",
         "requestType": "curl",
-        "preRequestScript": "// pw.env.set('variable', 'value');",
-        "testScript": "// pw.expect('variable').toBe('value');",
         "name": "Register",
-        "collection": 1
+        "collection": 1,
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');"
       },
       {
-        "url": "http://127.0.0.1:1984",
+        "url": "http://172.20.0.3:1984",
         "path": "/auth/login",
         "method": "POST",
         "auth": "None",
@@ -49,12 +49,12 @@
         "bodyParams": [
           {
             "key": "email",
-            "value": "b@a.fr",
+            "value": "a@b.fr",
             "active": true
           },
           {
             "key": "password",
-            "value": "rand0m",
+            "value": "a441b15fe9a3cf56661190a0b93b9dec7d04127288cc87250967cf3b52894d11",
             "active": true
           }
         ],
@@ -62,20 +62,20 @@
         "rawInput": false,
         "contentType": "application/json",
         "requestType": "curl",
-        "preRequestScript": "// pw.env.set('variable', 'value');",
-        "testScript": "// pw.expect('variable').toBe('value');",
         "name": "Login (JWT)",
-        "collection": 1
+        "collection": 1,
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');"
       },
       {
-        "url": "http://127.0.0.1:1984",
-        "path": "/users/3",
+        "url": "http://172.20.0.3:1984",
+        "path": "/users/a@a.fr",
         "method": "GET",
         "auth": "Bearer Token",
         "httpUser": "",
         "httpPassword": "",
         "passwordFieldType": "password",
-        "bearerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU2Nzg5NDksIm5iZiI6MTYxNTY3NTM0OSwidXNlcmlkIjoiYkBhLmZyIn0.HVkWBdpL1lvvFuHHlMoq_xy2jD5VMslCo8sG_YRKVg0",
+        "bearerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTE5NTAyMDUsIm5iZiI6MTYxNTk1MDIwNSwidXNlcmlkIjoiYUBhLmZyIn0.3ZF8QhgmoN_z6zF8r1PSjL2jTcJpdQUYzupsDtolcSM",
         "headers": [],
         "params": [],
         "bodyParams": [
@@ -94,58 +94,26 @@
         "rawInput": true,
         "contentType": "",
         "requestType": "curl",
-        "preRequestScript": "// pw.env.set('variable', 'value');",
-        "testScript": "// pw.expect('variable').toBe('value');",
         "name": "Get user",
-        "collection": 1
-      },
-      {
-        "url": "http://127.0.0.1:1984",
-        "path": "/users",
-        "method": "GET",
-        "auth": "Bearer Token",
-        "httpUser": "",
-        "httpPassword": "",
-        "passwordFieldType": "password",
-        "bearerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU2NzgzODUsIm5iZiI6MTYxNTY3NDc4NSwidXNlcmlkIjoiYUBhLmZyIn0.pC2FzsRiV8KTTZy65KZD-TplWyBlb9FnpGiSaQfbyhU",
-        "headers": [],
-        "params": [],
-        "bodyParams": [
-          {
-            "key": "email",
-            "value": "b@a.fr",
-            "active": true
-          },
-          {
-            "key": "password",
-            "value": "rand0m",
-            "active": true
-          }
-        ],
-        "rawParams": "",
-        "rawInput": true,
-        "contentType": "",
-        "requestType": "curl",
+        "collection": 1,
         "preRequestScript": "// pw.env.set('variable', 'value');",
-        "testScript": "// pw.expect('variable').toBe('value');",
-        "name": "Get users",
-        "collection": 1
+        "testScript": "// pw.expect('variable').toBe('value');"
       },
       {
-        "url": "http://127.0.0.1:1984",
-        "path": "/users/1",
+        "url": "http://172.20.0.3:1984",
+        "path": "/users/a@a.fr",
         "method": "PATCH",
         "auth": "Bearer Token",
         "httpUser": "",
         "httpPassword": "",
         "passwordFieldType": "password",
-        "bearerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU2NzgzODUsIm5iZiI6MTYxNTY3NDc4NSwidXNlcmlkIjoiYUBhLmZyIn0.pC2FzsRiV8KTTZy65KZD-TplWyBlb9FnpGiSaQfbyhU",
+        "bearerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTE5NTAyMDUsIm5iZiI6MTYxNTk1MDIwNSwidXNlcmlkIjoiYUBhLmZyIn0.3ZF8QhgmoN_z6zF8r1PSjL2jTcJpdQUYzupsDtolcSM",
         "headers": [],
         "params": [],
         "bodyParams": [
           {
             "key": "email",
-            "value": "b@a.fr",
+            "value": "a@a.fr",
             "active": true
           },
           {
@@ -163,20 +131,20 @@
         "rawInput": false,
         "contentType": "application/json",
         "requestType": "curl",
-        "preRequestScript": "// pw.env.set('variable', 'value');",
-        "testScript": "// pw.expect('variable').toBe('value');",
         "name": "Patch user",
-        "collection": 1
+        "collection": 1,
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');"
       },
       {
-        "url": "http://127.0.0.1:1984",
-        "path": "/users/1",
+        "url": "http://172.20.0.3:1984",
+        "path": "/users/a@a.fr",
         "method": "DELETE",
         "auth": "Bearer Token",
         "httpUser": "",
         "httpPassword": "",
         "passwordFieldType": "password",
-        "bearerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU2NzgzODUsIm5iZiI6MTYxNTY3NDc4NSwidXNlcmlkIjoiYUBhLmZyIn0.pC2FzsRiV8KTTZy65KZD-TplWyBlb9FnpGiSaQfbyhU",
+        "bearerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTE5NTAyMDUsIm5iZiI6MTYxNTk1MDIwNSwidXNlcmlkIjoiYUBhLmZyIn0.3ZF8QhgmoN_z6zF8r1PSjL2jTcJpdQUYzupsDtolcSM",
         "headers": [],
         "params": [],
         "bodyParams": [],
@@ -184,11 +152,12 @@
         "rawInput": false,
         "contentType": "application/json",
         "requestType": "curl",
-        "preRequestScript": "// pw.env.set('variable', 'value');",
-        "testScript": "// pw.expect('variable').toBe('value');",
         "name": "Delete user",
-        "collection": 1
+        "collection": 1,
+        "preRequestScript": "// pw.env.set('variable', 'value');",
+        "testScript": "// pw.expect('variable').toBe('value');"
       }
-    ]
+    ],
+    "collectionIndex": 1
   }
 ]
