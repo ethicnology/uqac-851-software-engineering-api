@@ -10,6 +10,7 @@ import (
 	"goyave.dev/goyave/v3/config"
 	"goyave.dev/goyave/v3/database"
 	"goyave.dev/goyave/v3/middleware/ratelimiter"
+	"syreclabs.com/go/faker"
 )
 
 func init() {
@@ -92,4 +93,15 @@ func RateLimiterFunc(request *goyave.Request) ratelimiter.Config {
 		RequestQuota:  quota,
 		QuotaDuration: time.Minute,
 	}
+}
+
+// UserGenerator generator function for the User model.
+// Generate users using the following:
+// database.NewFactory(model.UserGenerator).Generate(5)
+func UserGenerator() interface{} {
+	user := &User{}
+	b, _ := bcrypt.GenerateFromPassword([]byte(faker.Internet().Password(8, 14)), config.GetInt("app.bcryptCost"))
+	user.Password = string(b)
+	user.Email = faker.Internet().Email()
+	return user
 }
