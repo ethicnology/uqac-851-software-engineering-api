@@ -37,7 +37,7 @@ func myRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 	userRouter.Patch("/", user.Update)
 	userRouter.Delete("/", user.Destroy)
 
-	bankRouter := userRouter.Subrouter("/bank")
+	bankRouter := userRouter.Subrouter("/banks")
 	bankRouter.Get("/", bank.Index)
 	bankRouter.Post("/", bank.Store).Validate(bank.Structure)
 	bankRouter.Get("/{id:[0-9]+}", bank.Show)

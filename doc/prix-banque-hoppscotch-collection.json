@@ -167,7 +167,7 @@
         "requests": [
           {
             "url": "http://172.20.0.3:1984",
-            "path": "/users/a@a.fr/bank",
+            "path": "/users/a@a.fr/banks",
             "method": "POST",
             "auth": "Bearer Token",
             "httpUser": "",
@@ -194,7 +194,7 @@
           },
           {
             "url": "http://172.20.0.3:1984",
-            "path": "/users/a@a.fr/bank",
+            "path": "/users/a@a.fr/banks",
             "method": "GET",
             "auth": "Bearer Token",
             "httpUser": "",
@@ -221,7 +221,7 @@
           },
           {
             "url": "http://172.20.0.3:1984",
-            "path": "/users/a@a.fr/bank/1",
+            "path": "/users/a@a.fr/banks/1",
             "method": "GET",
             "auth": "Bearer Token",
             "httpUser": "",
@@ -248,7 +248,7 @@
           },
           {
             "url": "http://172.20.0.3:1984",
-            "path": "/users/a@a.fr/bank/1",
+            "path": "/users/a@a.fr/banks/1",
             "method": "PATCH",
             "auth": "Bearer Token",
             "httpUser": "",
@@ -275,7 +275,7 @@
           },
           {
             "url": "http://172.20.0.3:1984",
-            "path": "/users/a@a.fr/bank/2",
+            "path": "/users/a@a.fr/banks/2",
             "method": "DELETE",
             "auth": "Bearer Token",
             "httpUser": "",
