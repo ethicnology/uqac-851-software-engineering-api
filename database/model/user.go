@@ -10,10 +10,16 @@ import (
 	"goyave.dev/goyave/v3/config"
 	"goyave.dev/goyave/v3/database"
 	"goyave.dev/goyave/v3/middleware/ratelimiter"
+	"syreclabs.com/go/faker"
 )
 
 func init() {
 	database.RegisterModel(&User{})
+
+	database.AddInitializer(func(db *gorm.DB) {
+		db.Migrator().HasConstraint(&User{}, "Banks")
+		db.Migrator().HasConstraint(&User{}, "fk_users_banks")
+	})
 
 	config.Register("app.bcryptCost", config.Entry{
 		Value:            10,
@@ -28,11 +34,12 @@ type User struct {
 	CreatedAt time.Time      `json:"created_at"`
 	UpdatedAt time.Time      `json:"updated_at"`
 	DeletedAt gorm.DeletedAt `json:"deleted_at"`
-	ID        uint           `json:"id" gorm:"primarykey"`
+	ID        uint64         `json:"id" gorm:"primarykey"`
 	Email     string         `json:"email" gorm:"type:char(100);uniqueIndex;not null" auth:"username"`
 	Password  string         `json:"-" gorm:"size:64;not null" auth:"password"`
 	FirstName string         `json:"first_name"`
 	LastName  string         `json:"last_name"`
+	Banks     []Bank         `json:"-"`
 }
 
 // BeforeCreate hook executed before a User record is inserted in the database.
@@ -86,4 +93,15 @@ func RateLimiterFunc(request *goyave.Request) ratelimiter.Config {
 		RequestQuota:  quota,
 		QuotaDuration: time.Minute,
 	}
+}
+
+// UserGenerator generator function for the User model.
+// Generate users using the following:
+// database.NewFactory(model.UserGenerator).Generate(5)
+func UserGenerator() interface{} {
+	user := &User{}
+	b, _ := bcrypt.GenerateFromPassword([]byte(faker.Internet().Password(8, 14)), config.GetInt("app.bcryptCost"))
+	user.Password = string(b)
+	user.Email = faker.Internet().Email()
+	return user
 }

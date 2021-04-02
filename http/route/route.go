@@ -2,6 +2,7 @@ package route
 
 import (
 	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
+	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/bank"
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/user"
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/middleware"
 
@@ -18,10 +19,10 @@ func Register(router *goyave.Router) {
 	router.Middleware(ratelimiter.New(model.RateLimiterFunc))
 
 	authenticator := auth.Middleware(&model.User{}, &auth.JWTAuthenticator{})
-	UserRoutes(router, authenticator)
+	myRoutes(router, authenticator)
 }
 
-func UserRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
+func myRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 	authRouter := parent.Subrouter("/auth")
 
 	jwtController := auth.NewJWTController(&model.User{})
@@ -29,9 +30,17 @@ func UserRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 	authRouter.Post("/register", user.Store).Validate(user.Structure)
 	authRouter.Post("/login", jwtController.Login).Validate(user.Structure)
 
-	userRouter := parent.Subrouter("/users")
+	userRouter := parent.Subrouter("/users/{email}")
 	userRouter.Middleware(authenticator)
-	userRouter.Get("/{email}", user.Show).Middleware(middleware.Owner)
-	userRouter.Patch("/{email}", user.Update).Middleware(middleware.Owner)
-	userRouter.Delete("/{email}", user.Destroy).Middleware(middleware.Owner)
+	userRouter.Middleware(middleware.Owner)
+	userRouter.Get("/", user.Show)
+	userRouter.Patch("/", user.Update)
+	userRouter.Delete("/", user.Destroy)
+
+	bankRouter := userRouter.Subrouter("/banks")
+	bankRouter.Get("/", bank.Index)
+	bankRouter.Post("/", bank.Store).Validate(bank.Structure)
+	bankRouter.Get("/{id:[0-9]+}", bank.Show)
+	bankRouter.Patch("/{id:[0-9]+}", bank.Update).Validate(bank.Structure)
+	bankRouter.Delete("/{id:[0-9]+}", bank.Destroy)
 }

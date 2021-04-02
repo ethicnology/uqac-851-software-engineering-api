@@ -5,8 +5,10 @@ import (
 	"net/http"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
 	"goyave.dev/goyave/v3"
 	"goyave.dev/goyave/v3/config"
+	"goyave.dev/goyave/v3/database"
 )
 
 func Owner(next goyave.Handler) goyave.Handler {
@@ -26,12 +28,15 @@ func Owner(next goyave.Handler) goyave.Handler {
 
 		// Unpack claims from JWT
 		claims, _ := token.Claims.(jwt.MapClaims)
-		fmt.Println(email, claims["userid"])
 
 		// Check if the User is the owner of the resource.
 		if email != claims["userid"] {
 			response.Status(http.StatusForbidden)
 			return
+		} else {
+			user := model.User{}
+			database.Conn().Where("email = ?", claims["userid"]).First(&user)
+			request.Extra["UserID"] = user.ID
 		}
 		next(response, request) // Pass to the next handler
 	}
