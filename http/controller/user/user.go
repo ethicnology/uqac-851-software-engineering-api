@@ -27,7 +27,9 @@ func Store(response *goyave.Response, request *goyave.Request) {
 	if err := database.GetConnection().Create(&user).Error; err != nil {
 		response.Error(err)
 	} else {
-		response.JSON(http.StatusCreated, user)
+		response.JSON(http.StatusCreated, map[string]interface{}{
+			"id ": user.ID,
+		})
 	}
 }
 

@@ -4,7 +4,6 @@ import (
 	"os"
 
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/route"
-	_ "github.com/ethicnology/uqac-851-software-engineering-api/http/validation"
 
 	"goyave.dev/goyave/v3"
 	_ "goyave.dev/goyave/v3/database/dialect/mysql"
