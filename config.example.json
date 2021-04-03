@@ -34,7 +34,7 @@
     },
     "auth": {
         "jwt": {
-          "expiry": 36000000,
+          "expiry": 300,
           "secret": "secret"
         }
       }
