@@ -8,6 +8,7 @@ import (
 	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/route"
 	"goyave.dev/goyave/v3"
+	"goyave.dev/goyave/v3/auth"
 	"goyave.dev/goyave/v3/database"
 )
 
@@ -26,11 +27,11 @@ func (suite *UserTestSuite) SetupTest() {
 		Email:    "murray@bookchin.org",
 		Password: "a441b15fe9a3cf56661190a0b93b9dec7d04127288cc87250967cf3b52894d11",
 	}
-	suite.Email = override.Email
 	suite.Password = override.Password
-	suite.Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTMzMzc0MDAsIm5iZiI6MTYxNzMzNzQwMCwidXNlcmlkIjoibXVycmF5QGJvb2tjaGluLm9yZyJ9.u3ZMtgjPC3u90cHjxk2QRWcT6jyZkrJcthoDN9TGfKM"
 	user := factory.Override(override).Save(1).([]*model.User)[0]
 	suite.UserID = user.ID
+	suite.Email = user.Email
+	suite.Token, _ = auth.GenerateToken(user.Email)
 }
 
 func (suite *UserTestSuite) TestStore() {

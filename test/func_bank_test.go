@@ -9,6 +9,7 @@ import (
 	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/route"
 	"goyave.dev/goyave/v3"
+	"goyave.dev/goyave/v3/auth"
 	"goyave.dev/goyave/v3/database"
 )
 
@@ -24,16 +25,16 @@ type BankTestSuite struct {
 
 func (suite *BankTestSuite) SetupTest() {
 	suite.ClearDatabase()
-	userFactory := database.NewFactory(model.UserGenerator)
-	userOverride := &model.User{
+	factory := database.NewFactory(model.UserGenerator)
+	override := &model.User{
 		Email:    "murray@bookchin.org",
 		Password: "a441b15fe9a3cf56661190a0b93b9dec7d04127288cc87250967cf3b52894d11",
 	}
-	suite.Email = userOverride.Email
-	suite.Password = userOverride.Password
-	suite.Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTMzMzc0MDAsIm5iZiI6MTYxNzMzNzQwMCwidXNlcmlkIjoibXVycmF5QGJvb2tjaGluLm9yZyJ9.u3ZMtgjPC3u90cHjxk2QRWcT6jyZkrJcthoDN9TGfKM"
-	user := userFactory.Override(userOverride).Save(1).([]*model.User)[0]
+	suite.Password = override.Password
+	user := factory.Override(override).Save(1).([]*model.User)[0]
 	suite.UserID = user.ID
+	suite.Email = user.Email
+	suite.Token, _ = auth.GenerateToken(user.Email)
 
 	bankFactory := database.NewFactory(model.BankGenerator)
 	bankOverride := &model.Bank{
