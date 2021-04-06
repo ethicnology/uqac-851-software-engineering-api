@@ -53,6 +53,9 @@ git clone https://github.com/ethicnology/uqac-851-software-engineering-api.git
 #### Configuration
 Rename **config.example.json** as **config.json** and change values if needed.  
 All the fields are documented by [Goyave Framework](https://goyave.dev/guide/configuration.html)
+```sh
+mv config.example.json config.json
+```
 
 ### :whale: Run with docker
 ```sh
