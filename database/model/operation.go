@@ -1,33 +1,33 @@
 package model
 
 import (
-	"strconv"
 	"time"
 
 	"gorm.io/gorm"
 	"goyave.dev/goyave/v3/database"
-	"syreclabs.com/go/faker"
 )
 
 func init() {
-	database.RegisterModel(&Bank{})
+	database.RegisterModel(&Operation{})
 }
 
-// Bank represents a bank account
-type Bank struct {
-	CreatedAt time.Time      `json:"created_at"`
-	UpdatedAt time.Time      `json:"updated_at"`
-	DeletedAt gorm.DeletedAt `json:"deleted_at"`
-	ID        uint64         `json:"id" gorm:"primarykey"`
-	Balance   float64        `json:"balance"`
-	UserID    uint64         `json:"user_id" gorm:"not null"`
+// Operation represents a operation account
+type Operation struct {
+	CreatedAt  time.Time      `json:"created_at"`
+	UpdatedAt  time.Time      `json:"updated_at"`
+	DeletedAt  gorm.DeletedAt `json:"deleted_at"`
+	ID         uint64         `json:"id" gorm:"primarykey"`
+	Amount     float64        `json:"amount"`
+	BankID     uint64         `json:"sender_id" gorm:"not null"`   // cle etrangere de la table Bank dans la table operation  check if sender exist
+	ReceiverId uint64         `json:"receiver_id" gorm:"not null"` //TODO : check if receiver exist
 }
 
-func BankGenerator() interface{} {
-	bank := &Bank{}
-	UserID := database.NewFactory(UserGenerator).Save(1).([]*User)[0].ID
-	FakeFloat, _ := strconv.ParseFloat(faker.Number().Decimal(8, 2), 64)
-	bank.Balance = FakeFloat
-	bank.UserID = UserID
-	return bank
-}
+// func OperationGenerator() interface{} {
+// 	operation := &Operation{}
+// 	BankID := database.NewFactory(UserGenerator).Save(1).([]*User)[0].ID
+// 	ReceiverID := database.NewFactory(UserGenerator).Save(1).([]*User)[0].ID
+// 	FakeFloat, _ := strconv.ParseFloat(faker.Number().Decimal(8, 2), 64)
+// 	operation.Amount = FakeFloat
+// 	operation.ReceiverId = ReceiverID
+// 	return operation
+// }

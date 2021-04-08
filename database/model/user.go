@@ -19,6 +19,9 @@ func init() {
 	database.AddInitializer(func(db *gorm.DB) {
 		db.Migrator().HasConstraint(&User{}, "Banks")
 		db.Migrator().HasConstraint(&User{}, "fk_users_banks")
+
+		db.Migrator().HasConstraint(&Bank{}, "Operations")
+		db.Migrator().HasConstraint(&Bank{}, "fk_banks_operations")
 	})
 
 	config.Register("app.bcryptCost", config.Entry{
