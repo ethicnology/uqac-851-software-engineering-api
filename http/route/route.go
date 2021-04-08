@@ -43,4 +43,11 @@ func myRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 	bankRouter.Get("/{id:[0-9]+}", bank.Show)
 	bankRouter.Patch("/{id:[0-9]+}", bank.Update).Validate(bank.Structure)
 	bankRouter.Delete("/{id:[0-9]+}", bank.Destroy)
+
+	operationRouter := bankRouter.Subrouter("/operations")
+	operationRouter.Get("/", operation.Index)
+	operationRouter.Post("/", operation.Store).Validate(operation.Structure)
+	operationRouter.Get("/{id:[0-9]+}", operation.Show)
+	operationRouter.Patch("/{id:[0-9]+}", operation.Update).Validate(operation.Structure)
+	operationRouter.Delete("/{id:[0-9]+}", operation.Destroy)
 }
