@@ -10,12 +10,13 @@ import (
 	"goyave.dev/goyave/v3/database"
 )
 
-// Index banks account for a user
+// Index operations account for a user
 func Index(response *goyave.Response, request *goyave.Request) {
-	banks := []model.Bank{}
-	result := database.Conn().Where(&model.Bank{UserID: request.Extra["UserID"].(uint64)}).Find(&banks)
+	operations := []model.Operation{}
+	BankID := 1
+	result := database.Conn().Where(&model.Operation{BankID: uint64(BankID)}).Find(&operations)
 	if response.HandleDatabaseError(result) {
-		response.JSON(http.StatusOK, banks)
+		response.JSON(http.StatusOK, operations)
 	}
 }
 
