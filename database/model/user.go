@@ -37,8 +37,8 @@ type User struct {
 	ID        uint64         `json:"id" gorm:"primarykey"`
 	Email     string         `json:"email" gorm:"type:char(100);uniqueIndex;not null" auth:"username"`
 	Password  string         `json:"-" gorm:"size:64;not null" auth:"password"`
-	FirstName string         `json:"first_name"`
-	LastName  string         `json:"last_name"`
+	FirstName string         `json:"first_name" gorm:"type:char(100);not null"`
+	LastName  string         `json:"last_name" gorm:"type:char(100);not null"`
 	Banks     []Bank         `json:"-"`
 }
 
@@ -103,5 +103,7 @@ func UserGenerator() interface{} {
 	b, _ := bcrypt.GenerateFromPassword([]byte(faker.Internet().Password(8, 14)), config.GetInt("app.bcryptCost"))
 	user.Password = string(b)
 	user.Email = faker.Internet().Email()
+	user.LastName = "Connors" // faker.FakeName.LastName() ?? ne marche pas
+	user.FirstName = "Sarah"
 	return user
 }

@@ -15,25 +15,31 @@ import (
 
 type BankTestSuite struct {
 	goyave.TestSuite
-	UserID   uint64
-	Email    string
-	Password string
-	Token    string
-	BankID   uint64
-	Balance  float64
+	UserID    uint64
+	Email     string
+	Password  string
+	Token     string
+	FirstName string
+	LastName  string
+	BankID    uint64
+	Balance   float64
 }
 
 func (suite *BankTestSuite) SetupTest() {
 	suite.ClearDatabase()
 	factory := database.NewFactory(model.UserGenerator)
 	override := &model.User{
-		Email:    "murray@bookchin.org",
-		Password: "a441b15fe9a3cf56661190a0b93b9dec7d04127288cc87250967cf3b52894d11",
+		FirstName: "Pierre",
+		LastName:  "Balkany",
+		Email:     "murray@bookchin.org",
+		Password:  "a441b15fe9a3cf56661190a0b93b9dec7d04127288cc87250967cf3b52894d11",
 	}
 	suite.Password = override.Password
 	user := factory.Override(override).Save(1).([]*model.User)[0]
 	suite.UserID = user.ID
 	suite.Email = user.Email
+	suite.FirstName = user.FirstName
+	suite.LastName = user.LastName
 	suite.Token, _ = auth.GenerateToken(user.Email)
 
 	bankFactory := database.NewFactory(model.BankGenerator)
