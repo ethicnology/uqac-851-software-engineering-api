@@ -21,8 +21,10 @@ func Show(response *goyave.Response, request *goyave.Request) {
 // Store a user
 func Store(response *goyave.Response, request *goyave.Request) {
 	user := model.User{
-		Email:    request.String("email"),
-		Password: request.String("password"),
+		FirstName: request.String("first_name"),
+		LastName:  request.String("last_name"),
+		Email:     request.String("email"),
+		Password:  request.String("password"),
 	}
 	if err := database.GetConnection().Create(&user).Error; err != nil {
 		response.Error(err)
