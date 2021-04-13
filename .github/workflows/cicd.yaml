@@ -12,6 +12,11 @@ jobs:
     - run: go build
           
   deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+
     - name: copy file to remote using ssh key
       uses: appleboy/scp-action@master
       with:
