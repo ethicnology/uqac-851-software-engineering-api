@@ -18,8 +18,8 @@ type Operation struct {
 	DeletedAt  gorm.DeletedAt `json:"deleted_at"`
 	ID         uint64         `json:"id" gorm:"primarykey"`
 	Amount     float64        `json:"amount"`
-	BankID     uint64         `json:"sender_id" gorm:"not null"`   // cle etrangere de la table Bank dans la table operation  check if sender exist
-	ReceiverId uint64         `json:"receiver_id" gorm:"not null"` //TODO : check if receiver exist
+	BankID     uint64         `json:"bank_id" gorm:"not null"` // Foreign key of table bank
+	ReceiverID uint64         `json:"receiver_id" gorm:"not null"`
 }
 
 // func OperationGenerator() interface{} {
