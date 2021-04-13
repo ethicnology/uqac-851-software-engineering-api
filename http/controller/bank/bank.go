@@ -21,7 +21,7 @@ func Index(response *goyave.Response, request *goyave.Request) {
 
 // Show a bank account
 func Show(response *goyave.Response, request *goyave.Request) {
-	id, _ := strconv.ParseUint(request.Params["id"], 10, 64)
+	id, _ := strconv.ParseUint(request.Params["bank_id"], 10, 64)
 	bank := model.Bank{}
 	result := database.Conn().Where(&model.Bank{ID: id, UserID: request.Extra["UserID"].(uint64)}).First(&bank)
 	if response.HandleDatabaseError(result) {
@@ -38,16 +38,18 @@ func Store(response *goyave.Response, request *goyave.Request) {
 	if err := database.GetConnection().Create(&bank).Error; err != nil {
 		response.Error(err)
 	} else {
-		response.JSON(http.StatusCreated, bank)
+		response.JSON(http.StatusCreated, map[string]interface{}{
+			"id ": bank.ID,
+		})
 	}
 }
 
 // Update a bank account
 func Update(response *goyave.Response, request *goyave.Request) {
-	id, _ := strconv.ParseUint(request.Params["id"], 10, 64)
+	id, _ := strconv.ParseUint(request.Params["bank_id"], 10, 64)
 	bank := model.Bank{}
 	db := database.GetConnection()
-	result := db.Select("id").Where(&model.Bank{ID: id, UserID: request.Extra["UserID"].(uint64)}).First(&bank, request.Params["id"])
+	result := db.Select("id").Where(&model.Bank{ID: id, UserID: request.Extra["UserID"].(uint64)}).First(&bank, bankID)
 	if response.HandleDatabaseError(result) {
 		if err := db.Model(&bank).Updates(model.Bank{
 			Balance: request.Numeric("balance"),
@@ -59,7 +61,7 @@ func Update(response *goyave.Response, request *goyave.Request) {
 
 // Destroy a bank account
 func Destroy(response *goyave.Response, request *goyave.Request) {
-	id, _ := strconv.ParseUint(request.Params["id"], 10, 64)
+	id, _ := strconv.ParseUint(request.Params["bank_id"], 10, 64)
 	bank := model.Bank{}
 	db := database.Conn()
 	result := db.Select("id").Where(&model.Bank{ID: id, UserID: request.Extra["UserID"].(uint64)}).First(&bank)
