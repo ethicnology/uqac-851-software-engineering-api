@@ -49,7 +49,7 @@ func Update(response *goyave.Response, request *goyave.Request) {
 	id, _ := strconv.ParseUint(request.Params["bank_id"], 10, 64)
 	bank := model.Bank{}
 	db := database.GetConnection()
-	result := db.Select("id").Where(&model.Bank{ID: id, UserID: request.Extra["UserID"].(uint64)}).First(&bank, bankID)
+	result := db.Select("id").Where(&model.Bank{ID: id, UserID: request.Extra["UserID"].(uint64)}).First(&bank, id)
 	if response.HandleDatabaseError(result) {
 		if err := db.Model(&bank).Updates(model.Bank{
 			Balance: request.Numeric("balance"),
