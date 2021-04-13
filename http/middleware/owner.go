@@ -3,6 +3,7 @@ package middleware
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
@@ -13,7 +14,7 @@ import (
 
 func Owner(next goyave.Handler) goyave.Handler {
 	return func(response *goyave.Response, request *goyave.Request) {
-		email, _ := request.Params["email"]
+		email := request.Params["email"]
 
 		// Get Bearer Token
 		tokenString, _ := request.BearerToken()
@@ -37,6 +38,19 @@ func Owner(next goyave.Handler) goyave.Handler {
 			user := model.User{}
 			database.Conn().Where("email = ?", claims["userid"]).First(&user)
 			request.Extra["UserID"] = user.ID
+		}
+		next(response, request) // Pass to the next handler
+	}
+}
+
+func BankOwner(next goyave.Handler) goyave.Handler {
+	return func(response *goyave.Response, request *goyave.Request) {
+		id, _ := strconv.ParseUint(request.Params["bank_id"], 10, 64)
+		bank := model.Bank{}
+		if err := database.Conn().Where(&model.Bank{ID: id, UserID: request.Extra["UserID"].(uint64)}).First(&bank).Error; err != nil {
+			response.Status(http.StatusForbidden)
+		} else {
+			request.Extra["BankID"] = bank.ID
 		}
 		next(response, request) // Pass to the next handler
 	}
