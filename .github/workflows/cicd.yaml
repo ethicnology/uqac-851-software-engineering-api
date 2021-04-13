@@ -10,9 +10,6 @@ jobs:
       with:
         go-version: '1.13'
     - run: go build
-
-
-    steps:
     if: ${{ success() }}
     - uses: actions/checkout@master
     - name: copy file to remote using ssh key
