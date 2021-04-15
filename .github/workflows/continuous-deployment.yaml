@@ -1,16 +1,10 @@
-name: cicd
-on: [push]
-jobs:
-  build:
-    name: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-go@v1
-      with:
-        go-version: '1.13'
-    - run: go build
-          
+name: deployment
+on:
+  push:
+    branches:
+      - main
+      - develop
+jobs:        
   deploy:
     runs-on: ubuntu-latest
 
