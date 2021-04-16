@@ -30,9 +30,9 @@ func Show(response *goyave.Response, request *goyave.Request) {
 // Store operation for a bank account
 func Store(response *goyave.Response, request *goyave.Request) {
 	operation := model.Operation{
-		Amount:     request.Numeric("amount"),
-		BankID:     request.Extra["BankID"].(uint64),
-		ReceiverID: uint64(request.Numeric("receiver_id")),
+		Amount:   request.Numeric("amount"),
+		SenderID: request.Extra["BankID"].(uint64),
+		BankID:   uint64(request.Numeric("receiver_id")),
 	}
 	if err := database.GetConnection().Create(&operation).Error; err != nil {
 		response.Error(err)
