@@ -22,6 +22,9 @@ func init() {
 
 		db.Migrator().HasConstraint(&Bank{}, "Operations")
 		db.Migrator().HasConstraint(&Bank{}, "fk_banks_operations")
+
+		db.Migrator().HasConstraint(&Operation{}, "Invoices")
+		db.Migrator().HasConstraint(&Operation{}, "fk_operations_invoices")
 	})
 
 	config.Register("app.bcryptCost", config.Entry{

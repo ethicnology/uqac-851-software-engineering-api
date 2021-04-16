@@ -13,13 +13,22 @@ func init() {
 
 // Operation represents a operation account
 type Operation struct {
-	CreatedAt  time.Time      `json:"created_at"`
-	UpdatedAt  time.Time      `json:"updated_at"`
-	DeletedAt  gorm.DeletedAt `json:"deleted_at"`
-	ID         uint64         `json:"id" gorm:"primarykey"`
-	Amount     float64        `json:"amount"`
-	BankID     uint64         `json:"bank_id" gorm:"not null"` // Foreign key of table bank
-	ReceiverID uint64         `json:"receiver_id" gorm:"not null"`
+	CreatedAt time.Time      `json:"created_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
+	DeletedAt gorm.DeletedAt `json:"deleted_at"`
+	ID        uint64         `json:"id" gorm:"primarykey"`
+	Amount    float64        `json:"amount"`
+	SenderID  uint64         `json:"sender_id" gorm:"not null"`
+	BankID    uint64         `json:"receiver_id" gorm:"not null"` // Foreign key of table bank
+	Invoice   bool           `json:"invoice"`
+	Acquitted bool           `json:"acquitted"`
+	DueDate   time.Time      `json:"due_date"`
+	Transfer  bool           `json:"transfer"`
+	Instant   bool           `json:"instant"`
+	Scheduled bool           `json:"scheduled"`
+	Date      time.Time      `json:"date"`
+	Question  string         `json:"question"`
+	Answer    string         `json:"answer"`
 }
 
 // func OperationGenerator() interface{} {
