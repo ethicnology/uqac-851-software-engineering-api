@@ -378,6 +378,59 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Create Transfer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 11,\n    \"receiver_id\": 1,\n    \"scheduled\": \"false\",\n    \"date\": \"2021-05-11\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"To be...\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/1/operations/transfers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"1",
+								"operations",
+								"transfers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index Transfers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/1/operations/transfers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"1",
+								"operations",
+								"transfers"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
