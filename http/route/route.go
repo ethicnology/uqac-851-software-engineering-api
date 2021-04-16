@@ -3,6 +3,7 @@ package route
 import (
 	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/bank"
+	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/invoice"
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/operation"
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/user"
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/middleware"
@@ -49,6 +50,10 @@ func myRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 	operationRouter := bankIdRouter.Subrouter("/operations")
 	operationRouter.Middleware(middleware.BankOwner)
 	operationRouter.Get("/", operation.Index)
-	operationRouter.Post("/", operation.Store).Validate(operation.Structure)
-	operationRouter.Get("/{operationid:[0-9]+}", operation.Show)
+	operationIdRouter := operationRouter.Subrouter("/{operationid:[0-9]+}")
+	operationIdRouter.Get("/", operation.Show)
+
+	invoiceRouter := operationRouter.Subrouter("/invoices")
+	invoiceRouter.Get("/", invoice.Index)
+	invoiceRouter.Post("/", invoice.Store).Validate(invoice.Structure)
 }

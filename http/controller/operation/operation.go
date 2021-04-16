@@ -26,19 +26,3 @@ func Show(response *goyave.Response, request *goyave.Request) {
 		response.JSON(http.StatusOK, operation)
 	}
 }
-
-// Store operation for a bank account
-func Store(response *goyave.Response, request *goyave.Request) {
-	operation := model.Operation{
-		Amount:     request.Numeric("amount"),
-		BankID:     request.Extra["BankID"].(uint64),
-		ReceiverID: uint64(request.Numeric("receiver_id")),
-	}
-	if err := database.GetConnection().Create(&operation).Error; err != nil {
-		response.Error(err)
-	} else {
-		response.JSON(http.StatusCreated, map[string]interface{}{
-			"id ": operation.ID,
-		})
-	}
-}
