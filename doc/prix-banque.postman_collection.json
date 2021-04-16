@@ -306,19 +306,10 @@
 			"name": "operations",
 			"item": [
 				{
-					"name": "Create",
+					"name": "Index Operations",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"amount\": 11,\n    \"receiver_id\": 4\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{URL}}/users/{{email}}/banks/1/operations",
 							"host": [
@@ -336,12 +327,21 @@
 					"response": []
 				},
 				{
-					"name": "Index",
+					"name": "Create Invoice",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 11,\n    \"receiver_id\": 2,\n    \"acquitted\": \"false\",\n    \"due_date\": \"2021-05-11\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{URL}}/users/{{email}}/banks/1/operations",
+							"raw": "{{URL}}/users/{{email}}/banks/1/operations/invoices",
 							"host": [
 								"{{URL}}"
 							],
@@ -350,7 +350,30 @@
 								"{{email}}",
 								"banks",
 								"1",
-								"operations"
+								"operations",
+								"invoices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index Invoices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/1/operations/invoices",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"1",
+								"operations",
+								"invoices"
 							]
 						}
 					},
