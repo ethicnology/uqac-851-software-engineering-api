@@ -9,7 +9,7 @@
 			"name": "users",
 			"item": [
 				{
-					"name": "Create",
+					"name": "create",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -36,7 +36,7 @@
 					"response": []
 				},
 				{
-					"name": "Login",
+					"name": "login",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -63,7 +63,7 @@
 					"response": []
 				},
 				{
-					"name": "Update",
+					"name": "update",
 					"request": {
 						"method": "PATCH",
 						"header": [],
@@ -90,7 +90,7 @@
 					"response": []
 				},
 				{
-					"name": "Show",
+					"name": "show",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -120,7 +120,7 @@
 					"response": []
 				},
 				{
-					"name": "Destroy",
+					"name": "destroy",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -152,7 +152,7 @@
 			"name": "banks",
 			"item": [
 				{
-					"name": "Index",
+					"name": "index",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -183,7 +183,7 @@
 					"response": []
 				},
 				{
-					"name": "Create",
+					"name": "create",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -211,7 +211,7 @@
 					"response": []
 				},
 				{
-					"name": "Show",
+					"name": "show",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -243,7 +243,7 @@
 					"response": []
 				},
 				{
-					"name": "Update",
+					"name": "update",
 					"request": {
 						"method": "PATCH",
 						"header": [],
@@ -272,7 +272,7 @@
 					"response": []
 				},
 				{
-					"name": "Destroy",
+					"name": "destroy",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -306,7 +306,7 @@
 			"name": "operations",
 			"item": [
 				{
-					"name": "Index Operations",
+					"name": "index",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -327,13 +327,83 @@
 					"response": []
 				},
 				{
-					"name": "Create Invoice",
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/1/operations/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"1",
+								"operations",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "invoices",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/1/invoices",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"1",
+								"invoices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/1/invoices/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"1",
+								"invoices",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"amount\": 11,\n    \"receiver_id\": 2,\n    \"acquitted\": \"false\",\n    \"due_date\": \"2021-05-11\"\n}",
+							"raw": "{\n    \"amount\": 11,\n    \"receiver_id\": 1,\n    \"acquitted\": \"false\",\n    \"due_date\": \"2021-05-11\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -358,35 +428,13 @@
 					"response": []
 				},
 				{
-					"name": "Index Invoices",
+					"name": "update",
 					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/users/{{email}}/banks/1/operations/invoices",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"users",
-								"{{email}}",
-								"banks",
-								"1",
-								"operations",
-								"invoices"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create Transfer",
-					"request": {
-						"method": "POST",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"amount\": 11,\n    \"receiver_id\": 1,\n    \"scheduled\": \"false\",\n    \"date\": \"2021-05-11\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"To be...\"\n}",
+							"raw": "{\n    \"amount\": 17,\n    \"acquitted\": \"false\",\n    \"due_date\": \"2021-05-11\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -394,7 +442,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/users/{{email}}/banks/1/operations/transfers",
+							"raw": "{{URL}}/users/{{email}}/banks/1/invoices/2",
 							"host": [
 								"{{URL}}"
 							],
@@ -403,7 +451,55 @@
 								"{{email}}",
 								"banks",
 								"1",
-								"operations",
+								"invoices",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/1/invoices/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"1",
+								"invoices",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transfers",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/1/transfers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"1",
 								"transfers"
 							]
 						}
@@ -411,12 +507,12 @@
 					"response": []
 				},
 				{
-					"name": "Index Transfers",
+					"name": "show",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/users/{{email}}/banks/1/operations/transfers",
+							"raw": "{{URL}}/users/{{email}}/banks/1/transfers/11",
 							"host": [
 								"{{URL}}"
 							],
@@ -425,8 +521,91 @@
 								"{{email}}",
 								"banks",
 								"1",
-								"operations",
+								"transfers",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 11,\n    \"receiver_id\": 1,\n    \"scheduled\": \"false\",\n    \"date\": \"2006-01-02\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"To be...\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/1/transfers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"1",
 								"transfers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 20,\n    \"scheduled\": \"true\",\n    \"date\": \"2021-05-11\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"To be...\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/1/transfers/11",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"1",
+								"transfers",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/1/transfers/11",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"1",
+								"transfers",
+								"11"
 							]
 						}
 					},
