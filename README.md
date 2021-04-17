@@ -1,7 +1,7 @@
 ## About The Project
-![](https://github.com/ethicnology/uqac-851-software-engineering-api/blob/main/doc/logo.png "Screenshot")
+![](https://github.com/ethicnology/uqac-851-software-engineering-api/blob/main/docs/logo.png "Screenshot")
 This is a school project.  
-All the specifications are specified in [doc/Projet_Pratique.pdf](https://github.com/ethicnology/uqac-851-software-engineering-api/blob/main/doc/Projet_Pratique.pdf)
+All the specifications are specified in [docs/Projet_Pratique.pdf](https://github.com/ethicnology/uqac-851-software-engineering-api/blob/main/docs/Projet_Pratique.pdf)
 
 * [Docker](https://www.docker.com)
 * [Golang](https://golang.org)  
@@ -11,10 +11,11 @@ All the specifications are specified in [doc/Projet_Pratique.pdf](https://github
 ### :open_file_folder: Directory Structure
 ```
 .
+├── docs
+|
 ├── database
 │   ├── model                // ORM models and Generators for database testing
 │       └── ...
-
 ├── http
 │   ├── controller           // Business logic of the application
 │   │   └── ...
