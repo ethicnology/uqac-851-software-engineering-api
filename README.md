@@ -1,6 +1,5 @@
 ## About The Project
 ![](https://github.com/ethicnology/uqac-851-software-engineering-api/blob/main/doc/logo.png "Screenshot")
-
 This is a school project.  
 All the specifications are specified in [doc/Projet_Pratique.pdf](https://github.com/ethicnology/uqac-851-software-engineering-api/blob/main/doc/Projet_Pratique.pdf)
 
@@ -68,11 +67,14 @@ docker-compose up
 docker-compose -f docker-compose.test.yml up --abort-on-container-exit --remove-orphans
 # Exit when tests are finished
 ```
+### :books: Documentation
+I built a website with Github Pages which contains [**API documentation**](https://ethicnology.github.io/uqac-851-software-engineering-api/)  
+Also, you can find a markdwown version in [/docs/README.md](https://github.com/ethicnology/uqac-851-software-engineering-api/tree/develop/docs#readme)
 
 ### :runner: Usage
-#### Hoppscotch.io
-To play with your API, import the collection in /doc in [Hoppscotch](https://hoppscotch.io/).  
-All available endpoints are documented with examples.  
+#### Postman
+To play with your API, import the collection in /docs in [Postman](https://www.postman.com/).  
+All available endpoints are documented with examples.
 
 #### cURL
 Instead you can try it with your CLI using **cURL**.  
