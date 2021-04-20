@@ -57,6 +57,19 @@ All the fields are documented by [Goyave Framework](https://goyave.dev/guide/con
 mv config.example.json config.json
 ```
 
+Rename **.env.example** as **.env** and specify **the password for smtp mail** (ask to students) :
+```sh
+mv .env.example .env
+```
+
+```ini
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+MAIL_USER=prixbanque@gmail.com
+MAIL_PASS=<AskToStudents>
+```
+
+
 ### :whale: Run with docker
 ```sh
 docker-compose up
