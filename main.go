@@ -1,7 +1,9 @@
 package main
 
 import (
+	"math/rand"
 	"os"
+	"time"
 
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/route"
 
@@ -10,6 +12,8 @@ import (
 )
 
 func main() {
+	// Init seed
+	rand.Seed(time.Now().UnixNano())
 	// Application entry point.
 	if err := goyave.Start(route.Register); err != nil {
 		os.Exit(err.(*goyave.Error).ExitCode)

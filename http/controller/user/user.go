@@ -20,17 +20,41 @@ func Show(response *goyave.Response, request *goyave.Request) {
 
 // Store a user
 func Store(response *goyave.Response, request *goyave.Request) {
+	code, err := GenerateRandomString(32)
+	if err != nil {
+		panic(err)
+	}
 	user := model.User{
-		Email:    request.String("email"),
-		Password: request.String("password"),
+		Email:            request.String("email"),
+		Password:         request.String("password"),
+		Verified:         false,
+		VerificationCode: code,
 	}
 	if err := database.GetConnection().Create(&user).Error; err != nil {
 		response.Error(err)
 	} else {
-		SendEmail(request.Params["email"])
+		SendEmail(request.String("email"), "Prix-Banque Account Verification", "Please proceed to email verification using the code : "+code)
 		response.JSON(http.StatusCreated, map[string]interface{}{
 			"id ": user.ID,
 		})
+	}
+}
+
+// Email verification for a user
+func Verify(response *goyave.Response, request *goyave.Request) {
+	user := model.User{}
+	result := database.Conn().Where("email = ?", request.Params["email"]).First(&user)
+	if response.HandleDatabaseError(result) {
+		if user.VerificationCode == request.Params["verification_code"] {
+			if err := database.Conn().Model(&user).Updates(model.User{
+				Verified: true,
+			}).Error; err != nil {
+				response.Error(err)
+			}
+			SendEmail(request.Params["email"], "Prix-Banque Account Verified", "Your account is now verified, you can create a bank account")
+		} else {
+			response.Status(http.StatusForbidden)
+		}
 	}
 }
 

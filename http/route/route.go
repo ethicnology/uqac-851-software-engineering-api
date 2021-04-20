@@ -39,6 +39,7 @@ func myRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 	userRouter.Get("/", user.Show)
 	userRouter.Patch("/", user.Update)
 	userRouter.Delete("/", user.Destroy)
+	userRouter.Get("/verify/{verification_code}", user.Verify)
 
 	bankRouter := userRouter.Subrouter("/banks")
 	bankRouter.Get("/", bank.Index)
