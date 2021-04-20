@@ -120,6 +120,38 @@
 					"response": []
 				},
 				{
+					"name": "verify",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/verify/GRVEmbM2hVAIb3VJKyNa-AOzcZpR3xB-",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"verify",
+								"GRVEmbM2hVAIb3VJKyNa-AOzcZpR3xB-"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "destroy",
 					"request": {
 						"method": "DELETE",
@@ -619,7 +651,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTE5NTAyMDUsIm5iZiI6MTYxNTk1MDIwNSwidXNlcmlkIjoiYUBhLmZyIn0.3ZF8QhgmoN_z6zF8r1PSjL2jTcJpdQUYzupsDtolcSM",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTQ4OTUxMjYsIm5iZiI6MTYxODg5NTEyNiwidXNlcmlkIjoicHJpeGJhbnF1ZUBnbWFpbC5jb20ifQ.R4DOysxQwEF7wkrlOwfh8olisl0mrlGhS9tCPDDKJGI",
 				"type": "string"
 			}
 		]
