@@ -31,13 +31,24 @@ func Show(response *goyave.Response, request *goyave.Request) {
 
 // Store a bank account
 func Store(response *goyave.Response, request *goyave.Request) {
+	// Email verificatoin
 	user := model.User{}
 	database.Conn().Where("email = ?", request.Params["email"]).First(&user)
 	if !user.Verified { // if verified is false
 		response.Status(http.StatusForbidden)
 	}
+	// Up to 10,000 first customers are credited with 1000.00$ on their account
+	var count int64
+	var balance float64
+	database.Conn().Model(&model.Bank{}).Count(&count)
+	if count <= 10000 {
+		balance = 1000.00
+	} else {
+		balance = 0.0
+	}
+	// Create bank account
 	bank := model.Bank{
-		Balance: request.Numeric("balance"),
+		Balance: balance,
 		UserID:  request.Extra["UserID"].(uint64),
 	}
 	if err := database.GetConnection().Create(&bank).Error; err != nil {
