@@ -37,15 +37,17 @@ func init() {
 
 // User represents a user
 type User struct {
-	CreatedAt time.Time      `json:"created_at"`
-	UpdatedAt time.Time      `json:"updated_at"`
-	DeletedAt gorm.DeletedAt `json:"deleted_at"`
-	ID        uint64         `json:"id" gorm:"primarykey"`
-	Email     string         `json:"email" gorm:"type:char(100);uniqueIndex;not null" auth:"username"`
-	Password  string         `json:"-" gorm:"size:64;not null" auth:"password"`
-	FirstName string         `json:"first_name"`
-	LastName  string         `json:"last_name"`
-	Banks     []Bank         `json:"-"`
+	CreatedAt        time.Time      `json:"created_at"`
+	UpdatedAt        time.Time      `json:"updated_at"`
+	DeletedAt        gorm.DeletedAt `json:"deleted_at"`
+	ID               uint64         `json:"id" gorm:"primarykey"`
+	Email            string         `json:"email" gorm:"type:char(100);uniqueIndex;not null" auth:"username"`
+	Password         string         `json:"-" gorm:"size:64;not null" auth:"password"`
+	FirstName        string         `json:"first_name"`
+	LastName         string         `json:"last_name"`
+	Verified         bool           `json:"verified"`
+	VerificationCode string         `json:"verification_code"`
+	Banks            []Bank         `json:"-"`
 }
 
 // BeforeCreate hook executed before a User record is inserted in the database.

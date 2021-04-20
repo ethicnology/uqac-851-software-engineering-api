@@ -31,6 +31,11 @@ func Show(response *goyave.Response, request *goyave.Request) {
 
 // Store a bank account
 func Store(response *goyave.Response, request *goyave.Request) {
+	user := model.User{}
+	database.Conn().Where("email = ?", request.Params["email"]).First(&user)
+	if !user.Verified { // if verified is false
+		response.Status(http.StatusForbidden)
+	}
 	bank := model.Bank{
 		Balance: request.Numeric("balance"),
 		UserID:  request.Extra["UserID"].(uint64),
