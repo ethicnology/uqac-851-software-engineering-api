@@ -43,7 +43,7 @@ func myRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 
 	bankRouter := userRouter.Subrouter("/banks")
 	bankRouter.Get("/", bank.Index)
-	bankRouter.Post("/", bank.Store).Validate(bank.Structure)
+	bankRouter.Post("/", bank.Store)
 	bankIdRouter := bankRouter.Subrouter("/{bank_id:[0-9]+}")
 	bankIdRouter.Middleware(middleware.BankOwner)
 	bankIdRouter.Get("/", bank.Show)

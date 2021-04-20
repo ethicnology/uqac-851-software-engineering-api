@@ -47,13 +47,11 @@ func (suite *BankTestSuite) SetupTest() {
 
 func (suite *BankTestSuite) TestStore() {
 	suite.RunServer(route.Register, func() {
-		bank := &model.Bank{Balance: 100.5, UserID: suite.UserID}
-		body, _ := json.Marshal(bank)
 		headers := map[string]string{
 			"Content-Type":  "application/json",
 			"Authorization": "Bearer " + suite.Token,
 		}
-		resp, err := suite.Post("/users/"+suite.Email+"/banks", headers, bytes.NewReader(body))
+		resp, err := suite.Post("/users/"+suite.Email+"/banks", headers, nil)
 		suite.Nil(err)
 		suite.NotNil(resp)
 		if resp != nil {

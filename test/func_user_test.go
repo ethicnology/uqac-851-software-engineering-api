@@ -37,7 +37,7 @@ func (suite *UserTestSuite) SetupTest() {
 func (suite *UserTestSuite) TestStore() {
 	suite.RunServer(route.Register, func() {
 		request := map[string]interface{}{
-			"email":    "abdullah@ocalan.sy",
+			"email":    "prixbanque@gmail.com",
 			"password": suite.Password,
 		}
 		body, _ := json.Marshal(request)
