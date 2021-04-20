@@ -41,6 +41,7 @@
   * [login](#3-login)
   * [show](#4-show-3)
   * [update](#5-update-3)
+  * [verify](#6-verify)
 
 
 --------
@@ -482,6 +483,20 @@ URL: http://172.20.0.3:1984/users/a@a.fr
 
 
 
+### 6. verify
+
+
+
+***Endpoint:***
+
+```bash
+Method: GET
+Type: RAW
+URL: http://172.20.0.3:1984/users/a@a.fr/verify/GRVEmbM2hVAIb3VJKyNa-AOzcZpR3xB-
+```
+
+
+
 ***Available Variables:***
 
 | Key | Value | Type |
@@ -494,4 +509,4 @@ URL: http://172.20.0.3:1984/users/a@a.fr
 
 ---
 [Back to top](#prix-banque)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-16 22:56:13 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-20 01:27:55 by [docgen](https://github.com/thedevsaddam/docgen)
