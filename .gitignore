@@ -1,5 +1,6 @@
 ### Goyave ###
 config.json
+.env
 
 ### Go ###
 # Binaries for programs and plugins
