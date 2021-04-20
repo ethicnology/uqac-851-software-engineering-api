@@ -59,18 +59,8 @@
 
 ```bash
 Method: POST
-Type: RAW
+Type: 
 URL: http://172.20.0.3:1984/users/a@a.fr/banks
-```
-
-
-
-***Body:***
-
-```js        
-{
-    "balance": 100
-}
 ```
 
 
@@ -509,4 +499,4 @@ URL: http://172.20.0.3:1984/users/a@a.fr/verify/GRVEmbM2hVAIb3VJKyNa-AOzcZpR3xB-
 
 ---
 [Back to top](#prix-banque)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-20 01:27:55 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-20 15:24:24 by [docgen](https://github.com/thedevsaddam/docgen)
