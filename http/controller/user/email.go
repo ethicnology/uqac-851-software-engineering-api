@@ -5,12 +5,10 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log"
 	"math/big"
 	"net/smtp"
-	"os"
 
-	"github.com/joho/godotenv"
+	"goyave.dev/goyave/v3/config"
 )
 
 type loginAuth struct {
@@ -40,12 +38,7 @@ func (a *loginAuth) Next(fromServer []byte, more bool) ([]byte, error) {
 }
 
 func SendEmail(address string, subject string, body string) {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
-	fromAddress := os.Getenv("MAIL_USER")
+	fromAddress := config.GetString("prix-banque.smtp_user")
 	toAddresses := []string{address}
 
 	msg := "From: " + fromAddress + "\n" +
@@ -53,8 +46,8 @@ func SendEmail(address string, subject string, body string) {
 		"Subject:" + subject + "\n\n" +
 		body
 
-	auth := LoginAuth(os.Getenv("MAIL_USER"), os.Getenv("MAIL_PASS"))
-	err = smtp.SendMail(os.Getenv("SMTP_HOST")+":"+os.Getenv("SMTP_PORT"), auth, fromAddress, toAddresses, []byte(msg))
+	auth := LoginAuth(config.GetString("prix-banque.smtp_user"), config.GetString("prix-banque.smtp_pass"))
+	err := smtp.SendMail(config.GetString("prix-banque.smtp_host")+":"+config.GetString("prix-banque.smtp_port"), auth, fromAddress, toAddresses, []byte(msg))
 	if err != nil {
 		fmt.Print(err)
 	}

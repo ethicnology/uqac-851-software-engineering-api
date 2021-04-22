@@ -18,10 +18,14 @@ func (suite *FactoryTestSuite) TestUserGenerator() {
 	factory := database.NewFactory(model.UserGenerator)
 	user := factory.Generate(1).([]*model.User)[0]
 	override := &model.User{
-		Email: "arsene@lupin.fr",
+		Email:     "arsene@lupin.fr",
+		FirstName: "Arsène",
+		LastName:  "Lupin",
 	}
 	user = factory.Override(override).Generate(1).([]*model.User)[0]
 	suite.Equal("arsene@lupin.fr", user.Email)
+	suite.Equal("Arsène", user.FirstName)
+	suite.Equal("Lupin", user.LastName)
 	suite.UserID = user.ID
 }
 

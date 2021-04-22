@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\":\"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+							"raw": "{\n    \"email\":\"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"first_name\": \"User1\",\n    \"last_name\": \"Lambda\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -682,7 +682,7 @@
 		},
 		{
 			"key": "bank_id",
-			"value": "2"
+			"value": "1"
 		},
 		{
 			"key": "operation_id",
