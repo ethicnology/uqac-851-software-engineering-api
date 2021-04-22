@@ -111,5 +111,7 @@ func UserGenerator() interface{} {
 	b, _ := bcrypt.GenerateFromPassword([]byte(faker.Internet().Password(8, 14)), config.GetInt("app.bcryptCost"))
 	user.Password = string(b)
 	user.Email = faker.Internet().Email()
+	user.FirstName = faker.Name().FirstName()
+	user.LastName = faker.Name().LastName()
 	return user
 }
