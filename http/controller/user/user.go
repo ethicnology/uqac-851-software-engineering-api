@@ -27,6 +27,8 @@ func Store(response *goyave.Response, request *goyave.Request) {
 	user := model.User{
 		Email:            request.String("email"),
 		Password:         request.String("password"),
+		FirstName:        request.String("first_name"),
+		LastName:         request.String("last_name"),
 		Verified:         false,
 		VerificationCode: code,
 	}
