@@ -34,5 +34,11 @@
             "expiry": 300,
             "secret": "secret"
         }
+    },
+    "prix-banque":{
+        "smtp_host":"smtp.gmail.com",
+        "smtp_port":"587",
+        "smtp_user":"prixbanque@gmail.com",
+        "smtp_pass":""
     }
 }
