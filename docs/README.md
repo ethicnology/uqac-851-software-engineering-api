@@ -60,7 +60,7 @@
 ```bash
 Method: POST
 Type: 
-URL: http://172.20.0.3:1984/users/a@a.fr/banks
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks
 ```
 
 
@@ -74,7 +74,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks
 ```bash
 Method: DELETE
 Type: RAW
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/4
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2
 ```
 
 
@@ -88,7 +88,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/4
 ```bash
 Method: GET
 Type: RAW
-URL: http://172.20.0.3:1984/users/a@a.fr/banks
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks
 ```
 
 
@@ -102,7 +102,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks
 ```bash
 Method: GET
 Type: RAW
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2
 ```
 
 
@@ -116,7 +116,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1
 ```bash
 Method: PATCH
 Type: RAW
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2
 ```
 
 
@@ -144,7 +144,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1
 ```bash
 Method: POST
 Type: RAW
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/operations/invoices
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2/operations/invoices
 ```
 
 
@@ -171,7 +171,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/operations/invoices
 ```bash
 Method: DELETE
 Type: 
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/invoices/2
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2/invoices/1
 ```
 
 
@@ -185,7 +185,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/invoices/2
 ```bash
 Method: GET
 Type: 
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/invoices
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/invoices
 ```
 
 
@@ -199,7 +199,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/invoices
 ```bash
 Method: GET
 Type: 
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/invoices/2
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2/invoices/1
 ```
 
 
@@ -213,7 +213,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/invoices/2
 ```bash
 Method: PATCH
 Type: RAW
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/invoices/2
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2/invoices/1
 ```
 
 
@@ -243,7 +243,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/invoices/2
 ```bash
 Method: GET
 Type: 
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/operations
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2/operations
 ```
 
 
@@ -257,7 +257,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/operations
 ```bash
 Method: GET
 Type: 
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/operations/2
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2/operations/1
 ```
 
 
@@ -275,7 +275,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/operations/2
 ```bash
 Method: POST
 Type: RAW
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/transfers
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2/transfers
 ```
 
 
@@ -304,7 +304,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/transfers
 ```bash
 Method: DELETE
 Type: 
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/transfers/11
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2/transfers/1
 ```
 
 
@@ -318,7 +318,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/transfers/11
 ```bash
 Method: GET
 Type: 
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/transfers
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2/transfers
 ```
 
 
@@ -332,7 +332,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/transfers
 ```bash
 Method: GET
 Type: 
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/transfers/11
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2/transfers/11
 ```
 
 
@@ -346,7 +346,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/transfers/11
 ```bash
 Method: PATCH
 Type: RAW
-URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/transfers/11
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/2/transfers/1
 ```
 
 
@@ -378,7 +378,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr/banks/1/transfers/11
 ```bash
 Method: POST
 Type: RAW
-URL: http://172.20.0.3:1984/auth/register
+URL: https://dissidence.dev:9999/auth/register
 ```
 
 
@@ -403,7 +403,7 @@ URL: http://172.20.0.3:1984/auth/register
 ```bash
 Method: DELETE
 Type: RAW
-URL: http://172.20.0.3:1984/users/a@a.fr
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com
 ```
 
 
@@ -417,7 +417,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr
 ```bash
 Method: POST
 Type: RAW
-URL: http://172.20.0.3:1984/auth/login
+URL: https://dissidence.dev:9999/auth/login
 ```
 
 
@@ -442,7 +442,7 @@ URL: http://172.20.0.3:1984/auth/login
 ```bash
 Method: GET
 Type: RAW
-URL: http://172.20.0.3:1984/users/a@a.fr
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com
 ```
 
 
@@ -456,7 +456,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr
 ```bash
 Method: PATCH
 Type: RAW
-URL: http://172.20.0.3:1984/users/a@a.fr
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com
 ```
 
 
@@ -482,7 +482,7 @@ URL: http://172.20.0.3:1984/users/a@a.fr
 ```bash
 Method: GET
 Type: RAW
-URL: http://172.20.0.3:1984/users/a@a.fr/verify/GRVEmbM2hVAIb3VJKyNa-AOzcZpR3xB-
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/verify/GRVEmbM2hVAIb3VJKyNa-AOzcZpR3xB-
 ```
 
 
@@ -491,12 +491,14 @@ URL: http://172.20.0.3:1984/users/a@a.fr/verify/GRVEmbM2hVAIb3VJKyNa-AOzcZpR3xB-
 
 | Key | Value | Type |
 | --- | ------|-------------|
-| URL | http://172.20.0.3:1984 |  |
-| email | a@a.fr |  |
-| password | a441b15fe9a3cf56661190a0b93b9dec7d04127288cc87250967cf3b52894d11 |  |
+| URL | https://dissidence.dev:9999 |  |
+| email | user1prixbanque@gmail.com |  |
+| password | 1c002df4bdb6cd88651c6c2e92a1d63ae0c016b2f96b6ffd452c0a6219dd33b7 |  |
+| bank_id | 2 |  |
+| operation_id | 1 |  |
 
 
 
 ---
 [Back to top](#prix-banque)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-20 15:24:24 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-22 14:57:05 by [docgen](https://github.com/thedevsaddam/docgen)
