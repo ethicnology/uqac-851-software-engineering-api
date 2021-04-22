@@ -30,8 +30,8 @@ func myRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 
 	jwtController := auth.NewJWTController(&model.User{})
 	jwtController.UsernameField = "email"
-	authRouter.Post("/register", user.Store).Validate(user.Structure)
-	authRouter.Post("/login", jwtController.Login).Validate(user.Structure)
+	authRouter.Post("/register", user.Store).Validate(user.Register)
+	authRouter.Post("/login", jwtController.Login).Validate(user.Login)
 
 	userRouter := parent.Subrouter("/users/{email}")
 	userRouter.Middleware(authenticator)
