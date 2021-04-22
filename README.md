@@ -51,22 +51,20 @@ You only need docker installed in your OS in order to host all the components wi
 git clone https://github.com/ethicnology/uqac-851-software-engineering-api.git
 ```
 #### Configuration
-Rename **config.example.json** as **config.json** and change values if needed.  
-All the fields are documented by [Goyave Framework](https://goyave.dev/guide/configuration.html)
+Copy **config.example.json** as **config.json** and add **the SMTP password (ask to students)**.  
 ```sh
-mv config.example.json config.json
+cp config.example.json config.json
 ```
-
-Rename **.env.example** as **.env** and specify **the password for smtp mail** (ask to students) :
-```sh
-mv .env.example .env
-```
-
-```ini
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-MAIL_USER=prixbanque@gmail.com
-MAIL_PASS=<AskToStudents>
+If you want to run the tests, you need to **specify the SMTP password in the config.test.json too** :
+```json
+{ ...
+      "prix-banque":{
+        "smtp_host":"smtp.gmail.com",
+        "smtp_port":"587",
+        "smtp_user":"prixbanque@gmail.com",
+        "smtp_pass":"<AskStudentsForThePassword>"
+    }
+}
 ```
 
 
