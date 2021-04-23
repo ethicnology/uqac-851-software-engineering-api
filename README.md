@@ -1,3 +1,9 @@
+[![Integration Backend](https://github.com/ethicnology/uqac-851-software-engineering-api/actions/workflows/continuous-integration.yaml/badge.svg)](https://github.com/ethicnology/uqac-851-software-engineering-api/actions/workflows/continuous-integration.yaml)
+[![Deployment Backend](https://github.com/ethicnology/uqac-851-software-engineering-api/actions/workflows/continuous-deployment.yaml/badge.svg)](https://github.com/ethicnology/uqac-851-software-engineering-api/actions/workflows/continuous-deployment.yaml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ethicnology/uqac-851-software-engineering-api)](https://goreportcard.com/report/github.com/ethicnology/uqac-851-software-engineering-api)
+[![BCH compliance](https://bettercodehub.com/edge/badge/ethicnology/uqac-851-software-engineering-api?branch=develop)](https://bettercodehub.com/)
+
+
 ## About The Project
 ![](https://github.com/ethicnology/uqac-851-software-engineering-api/blob/develop/docs/logo.png "Screenshot")  
 This is a school project.  
