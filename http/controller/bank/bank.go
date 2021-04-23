@@ -1,8 +1,10 @@
 package bank
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
 
@@ -25,7 +27,11 @@ func Show(response *goyave.Response, request *goyave.Request) {
 	bank := model.Bank{}
 	result := database.Conn().Where(&model.Bank{ID: id, UserID: request.Extra["UserID"].(uint64)}).First(&bank)
 	if response.HandleDatabaseError(result) {
-		response.JSON(http.StatusOK, bank)
+		computedBalance := ComputeBalance(bank.ID, bank.Balance)
+		response.JSON(http.StatusOK, map[string]interface{}{
+			"id ":     bank.ID,
+			"balance": computedBalance,
+		})
 	}
 }
 
@@ -86,4 +92,33 @@ func Destroy(response *goyave.Response, request *goyave.Request) {
 			response.Error(err)
 		}
 	}
+}
+
+func ComputeBalance(id uint64, balance float64) float64 {
+	spent := []model.Operation{}
+	database.Conn().Where(&model.Operation{SenderID: id}).Find(&spent)
+	acquittedInvoices := []model.Operation{}
+	database.Conn().Where(&model.Operation{BankID: id, Acquitted: true}).Find(&acquittedInvoices)
+	receivedTransfers := []model.Operation{}
+	database.Conn().Where(&model.Operation{BankID: id, Instant: true, Scheduled: false}).Or(&model.Operation{BankID: id, Scheduled: true, Instant: false}).Find(&receivedTransfers)
+	for _, outcome := range spent {
+		balance -= outcome.Amount
+	}
+	for _, invoice := range acquittedInvoices {
+		balance += invoice.Amount
+	}
+	today := time.Now()
+
+	for _, transfer := range receivedTransfers {
+		if transfer.Scheduled {
+			if transfer.Date.Before(today) || transfer.Date == today {
+				fmt.Println(transfer.ID, transfer.Date)
+				balance += transfer.Amount
+			}
+		}
+		if transfer.Instant {
+			balance += transfer.Amount
+		}
+	}
+	return balance
 }

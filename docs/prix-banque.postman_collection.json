@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7dbb0220-0974-44d6-a69d-9f6bfaef5b1e",
+		"_postman_id": "26cc3d34-0445-46da-b726-ddb31afd9ec2",
 		"name": "prix-banque",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -558,7 +558,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"amount\": 11,\n    \"receiver_id\": 1,\n    \"scheduled\": \"false\",\n    \"date\": \"2006-01-02\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"To be...\"\n}",
+							"raw": "{\n    \"amount\": 11,\n    \"receiver_id\": 1,\n    \"scheduled\": \"true\",\n    \"instant\": \"false\",\n    \"date\": \"2021-04-22\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"To be...\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
