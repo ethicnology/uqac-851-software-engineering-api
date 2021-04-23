@@ -8,6 +8,7 @@ var (
 	Post validation.RuleSet = validation.RuleSet{
 		"receiver_id": {"required", "numeric", "min:1"},
 		"scheduled":   {"required", "bool"},
+		"instant":     {"required", "bool"},
 		"amount":      {"required", "numeric"},
 		"date":        {"required", "date"},
 		"question":    {"required", "string"},
@@ -18,6 +19,7 @@ var (
 var (
 	Patch validation.RuleSet = validation.RuleSet{
 		"scheduled": {"required", "bool"},
+		"instant":   {"required", "bool"},
 		"amount":    {"required", "numeric"},
 		"date":      {"required", "date"},
 		"question":  {"required", "string"},

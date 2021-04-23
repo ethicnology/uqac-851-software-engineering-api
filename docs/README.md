@@ -286,8 +286,9 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfe
 {
     "amount": 11,
     "receiver_id": 1,
-    "scheduled": "false",
-    "date": "2006-01-02",
+    "scheduled": "true",
+    "instant": "false",
+    "date": "2021-04-22",
     "question": "To be or not ?",
     "answer": "To be..."
 }
@@ -503,4 +504,4 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/verify/GRVEmbM2
 
 ---
 [Back to top](#prix-banque)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-22 16:36:36 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-23 17:48:40 by [docgen](https://github.com/thedevsaddam/docgen)
