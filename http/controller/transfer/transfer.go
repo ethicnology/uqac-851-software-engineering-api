@@ -16,6 +16,8 @@ type Transfer struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	ID        uint64    `json:"id"`
 	Amount    float64   `json:"amount"`
+	From      string    `json:"from"`
+	To        string    `json:"to"`
 	SenderID  uint64    `json:"sender_id"`
 	BankID    uint64    `json:"receiver_id"`
 	Transfer  bool      `json:"transfer"`
@@ -24,12 +26,15 @@ type Transfer struct {
 	Date      time.Time `json:"date"`
 	Question  string    `json:"question"`
 	Answer    string    `json:"answer"`
+	Verified  bool      `json:"verified"`
+	Try       uint      `json:"try"`
 }
 
 // Index transfers operations for a bank account
 func Index(response *goyave.Response, request *goyave.Request) {
+	userBankId := request.Extra["BankID"].(uint64)
 	transfers := []Transfer{}
-	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{Invoice: false, Transfer: true, BankID: request.Extra["BankID"].(uint64)}).Find(&transfers)
+	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{Invoice: false, Transfer: true, BankID: userBankId}).Or(&model.Operation{Invoice: false, Transfer: true, SenderID: userBankId}).Find(&transfers)
 	if response.HandleDatabaseError(result) {
 		response.JSON(http.StatusOK, transfers)
 	}
@@ -37,9 +42,10 @@ func Index(response *goyave.Response, request *goyave.Request) {
 
 // Show transfer operation for a bank account
 func Show(response *goyave.Response, request *goyave.Request) {
+	userBankId := request.Extra["BankID"].(uint64)
 	id, _ := strconv.ParseUint(request.Params["transfer_id"], 10, 64)
 	transfer := Transfer{}
-	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{ID: id, Invoice: false, Transfer: true, BankID: request.Extra["BankID"].(uint64)}).First(&transfer, id)
+	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{ID: id, Invoice: false, Transfer: true, BankID: userBankId}).Or(&model.Operation{ID: id, Invoice: false, Transfer: true, BankID: userBankId}).First(&transfer, id)
 	if response.HandleDatabaseError(result) {
 		response.JSON(http.StatusOK, transfer)
 	}
@@ -47,40 +53,36 @@ func Show(response *goyave.Response, request *goyave.Request) {
 
 // Store transfers operation for a bank account
 func Store(response *goyave.Response, request *goyave.Request) {
-	operation := model.Operation{
-		Invoice:   false,
-		Transfer:  true,
-		SenderID:  request.Extra["BankID"].(uint64),
-		BankID:    uint64(request.Numeric("receiver_id")),
-		Amount:    request.Numeric("amount"),
-		Scheduled: request.Bool("scheduled"),
-		Date:      request.Date("date"),
-		Question:  request.String("question"),
-		Answer:    request.String("answer"),
-	}
-	if err := database.GetConnection().Create(&operation).Error; err != nil {
-		response.Error(err)
-	} else {
-		response.JSON(http.StatusCreated, map[string]interface{}{
-			"id": operation.ID,
-		})
-	}
-}
-
-// Update transfer operation
-func Update(response *goyave.Response, request *goyave.Request) {
-	id, _ := strconv.ParseUint(request.Params["transfer_id"], 10, 64)
-	operation := model.Operation{}
-	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{ID: id, Invoice: false, Transfer: true, BankID: request.Extra["BankID"].(uint64)}).First(&operation)
+	// Verify if receiver exist
+	receiver := model.User{}
+	result := database.Conn().Where("email = ?", request.String("to")).First(&receiver)
 	if response.HandleDatabaseError(result) {
-		if err := database.Conn().Model(&operation).Updates(model.Operation{
+		// Get the Bank account ID of receiver
+		receiverBank := model.Bank{}
+		database.Conn().Where(&model.Bank{UserID: receiver.ID}).First(&receiverBank)
+		// Construct operation object
+		operation := model.Operation{
+			Invoice:   false,
+			Transfer:  true,
+			From:      request.Extra["UserEmail"].(string),
+			To:        receiver.Email,
+			SenderID:  request.Extra["BankID"].(uint64),
+			BankID:    receiverBank.ID,
 			Amount:    request.Numeric("amount"),
+			Instant:   request.Bool("instant"),
 			Scheduled: request.Bool("scheduled"),
 			Date:      request.Date("date"),
 			Question:  request.String("question"),
 			Answer:    request.String("answer"),
-		}).Error; err != nil {
+			Verified:  false,
+			Try:       0,
+		}
+		if err := database.GetConnection().Create(&operation).Error; err != nil {
 			response.Error(err)
+		} else {
+			response.JSON(http.StatusCreated, map[string]interface{}{
+				"id": operation.ID,
+			})
 		}
 	}
 }

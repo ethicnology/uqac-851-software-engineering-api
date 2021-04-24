@@ -47,7 +47,6 @@ func myRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 	bankIdRouter := bankRouter.Subrouter("/{bank_id:[0-9]+}")
 	bankIdRouter.Middleware(middleware.BankOwner)
 	bankIdRouter.Get("/", bank.Show)
-	bankIdRouter.Patch("/", bank.Update).Validate(bank.Structure)
 	bankIdRouter.Delete("/", bank.Destroy)
 
 	operationRouter := bankIdRouter.Subrouter("/operations")
@@ -60,7 +59,6 @@ func myRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 	invoiceRouter.Post("/", invoice.Store).Validate(invoice.Post)
 	invoiceIdRouter := invoiceRouter.Subrouter("/{invoice_id:[0-9]+}")
 	invoiceIdRouter.Get("/", invoice.Show)
-	invoiceIdRouter.Patch("/", invoice.Update).Validate(invoice.Patch)
 	invoiceIdRouter.Delete("/", invoice.Destroy)
 
 	transferRouter := bankIdRouter.Subrouter("/transfers")
@@ -68,6 +66,5 @@ func myRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 	transferRouter.Post("/", transfer.Store).Validate(transfer.Post)
 	transferIdRouter := transferRouter.Subrouter("/{transfer_id:[0-9]+}")
 	transferIdRouter.Get("/", transfer.Show)
-	transferIdRouter.Patch("/", transfer.Update).Validate(transfer.Patch)
 	transferIdRouter.Delete("/", transfer.Destroy)
 }

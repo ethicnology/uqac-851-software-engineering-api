@@ -1,7 +1,6 @@
 package bank
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"time"
@@ -27,7 +26,12 @@ func Show(response *goyave.Response, request *goyave.Request) {
 	bank := model.Bank{}
 	result := database.Conn().Where(&model.Bank{ID: id, UserID: request.Extra["UserID"].(uint64)}).First(&bank)
 	if response.HandleDatabaseError(result) {
-		computedBalance := ComputeBalance(bank.ID, bank.Balance)
+		computedBalance := ComputeBalance(bank.ID)
+		if err := database.Conn().Model(&bank).Updates(model.Bank{
+			Balance: computedBalance,
+		}).Error; err != nil {
+			response.Error(err)
+		}
 		response.JSON(http.StatusOK, map[string]interface{}{
 			"id ":     bank.ID,
 			"balance": computedBalance,
@@ -66,21 +70,6 @@ func Store(response *goyave.Response, request *goyave.Request) {
 	}
 }
 
-// Update a bank account
-func Update(response *goyave.Response, request *goyave.Request) {
-	id, _ := strconv.ParseUint(request.Params["bank_id"], 10, 64)
-	bank := model.Bank{}
-	db := database.GetConnection()
-	result := db.Select("id").Where(&model.Bank{ID: id, UserID: request.Extra["UserID"].(uint64)}).First(&bank, id)
-	if response.HandleDatabaseError(result) {
-		if err := db.Model(&bank).Updates(model.Bank{
-			Balance: request.Numeric("balance"),
-		}).Error; err != nil {
-			response.Error(err)
-		}
-	}
-}
-
 // Destroy a bank account
 func Destroy(response *goyave.Response, request *goyave.Request) {
 	id, _ := strconv.ParseUint(request.Params["bank_id"], 10, 64)
@@ -94,13 +83,17 @@ func Destroy(response *goyave.Response, request *goyave.Request) {
 	}
 }
 
-func ComputeBalance(id uint64, balance float64) float64 {
+func ComputeBalance(id uint64) float64 {
+	balance := 0.0
+	if id <= 10000 {
+		balance += 1000.0
+	}
 	spent := []model.Operation{}
 	database.Conn().Where(&model.Operation{SenderID: id}).Find(&spent)
 	acquittedInvoices := []model.Operation{}
 	database.Conn().Where(&model.Operation{BankID: id, Acquitted: true}).Find(&acquittedInvoices)
 	receivedTransfers := []model.Operation{}
-	database.Conn().Where(&model.Operation{BankID: id, Instant: true, Scheduled: false}).Or(&model.Operation{BankID: id, Scheduled: true, Instant: false}).Find(&receivedTransfers)
+	database.Conn().Where(&model.Operation{BankID: id, Instant: true, Scheduled: false, Verified: true}).Or(&model.Operation{BankID: id, Scheduled: true, Instant: false, Verified: true}).Find(&receivedTransfers)
 	for _, outcome := range spent {
 		balance -= outcome.Amount
 	}
@@ -112,7 +105,6 @@ func ComputeBalance(id uint64, balance float64) float64 {
 	for _, transfer := range receivedTransfers {
 		if transfer.Scheduled {
 			if transfer.Date.Before(today) || transfer.Date == today {
-				fmt.Println(transfer.ID, transfer.Date)
 				balance += transfer.Amount
 			}
 		}

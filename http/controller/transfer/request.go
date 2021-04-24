@@ -6,18 +6,7 @@ import (
 
 var (
 	Post validation.RuleSet = validation.RuleSet{
-		"receiver_id": {"required", "numeric", "min:1"},
-		"scheduled":   {"required", "bool"},
-		"instant":     {"required", "bool"},
-		"amount":      {"required", "numeric"},
-		"date":        {"required", "date"},
-		"question":    {"required", "string"},
-		"answer":      {"required", "string"},
-	}
-)
-
-var (
-	Patch validation.RuleSet = validation.RuleSet{
+		"to":        {"required", "string"},
 		"scheduled": {"required", "bool"},
 		"instant":   {"required", "bool"},
 		"amount":    {"required", "numeric"},

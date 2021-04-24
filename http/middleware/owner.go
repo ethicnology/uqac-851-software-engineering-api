@@ -38,6 +38,7 @@ func Owner(next goyave.Handler) goyave.Handler {
 			user := model.User{}
 			database.Conn().Where("email = ?", claims["userid"]).First(&user)
 			request.Extra["UserID"] = user.ID
+			request.Extra["UserEmail"] = user.Email
 		}
 		next(response, request) // Pass to the next handler
 	}
