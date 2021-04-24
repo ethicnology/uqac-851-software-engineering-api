@@ -1,11 +1,13 @@
 package transfer
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 	"time"
 
 	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
+	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/user"
 
 	"goyave.dev/goyave/v3"
 	"goyave.dev/goyave/v3/database"
@@ -95,6 +97,45 @@ func Destroy(response *goyave.Response, request *goyave.Request) {
 	if response.HandleDatabaseError(result) {
 		if err := database.Conn().Delete(&operation).Error; err != nil {
 			response.Error(err)
+		}
+	}
+}
+
+// Email verification for a user
+func Verify(response *goyave.Response, request *goyave.Request) {
+	id, _ := strconv.ParseUint(request.Params["transfer_id"], 10, 64)
+	answer := request.Params["answer"]
+	transfer := model.Operation{}
+	result := database.Conn().Where(&model.Operation{ID: id, Invoice: false, Transfer: true, Verified: false}).First(&transfer)
+	if response.HandleDatabaseError(result) {
+		transferId := strconv.FormatUint(transfer.ID, 10)
+		amount := fmt.Sprintf("%f", transfer.Amount)
+		if transfer.Try <= 3 {
+			if transfer.Answer == answer {
+				user.SendEmail(transfer.From, "Prix-Banque Transfer n"+transferId+"Verified", "From "+transfer.From+" to "+transfer.To+" amount "+amount+"$")
+				user.SendEmail(transfer.To, "Prix-Banque Transfer n"+transferId+" Verified", "From "+transfer.From+" to "+transfer.To+" amount "+amount+"$")
+				if err := database.Conn().Model(&transfer).Updates(model.Operation{
+					Verified: true,
+				}).Error; err != nil {
+					response.Error(err)
+				}
+			} else {
+				user.SendEmail(transfer.To, "Prix-Banque Transfer n"+transferId+" Incorrect Answer Try Again", "From "+transfer.From+" to "+transfer.To+" amount "+amount+"$")
+				try := transfer.Try + 1
+				if err := database.Conn().Model(&transfer).Updates(model.Operation{
+					Try:      try,
+					Verified: false,
+				}).Error; err != nil {
+					response.Error(err)
+				}
+				response.Status(http.StatusBadRequest)
+			}
+		}
+		if transfer.Try > 3 {
+			user.SendEmail(transfer.From, "Prix-Banque Transfer n"+transferId+" Blocked", "From "+transfer.From+" to "+transfer.To+" amount "+amount+"$")
+			user.SendEmail(transfer.To, "Prix-Banque Transfer n"+transferId+" Blocked", "From "+transfer.From+" to "+transfer.To+" amount "+amount+"$")
+			response.Status(http.StatusForbidden)
+
 		}
 	}
 }

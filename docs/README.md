@@ -30,6 +30,7 @@
   * [destroy](#2-destroy-2)
   * [index](#3-index-2)
   * [show](#4-show-2)
+  * [verify](#5-verify)
 
 * [users](#users)
 
@@ -285,6 +286,20 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfe
 
 
 
+### 5. verify
+
+
+
+***Endpoint:***
+
+```bash
+Method: GET
+Type: 
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers/11/verify/something
+```
+
+
+
 ## users
 
 
@@ -423,4 +438,4 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/verify/GRVEmbM2
 
 ---
 [Back to top](#prix-banque)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-23 23:29:16 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-24 00:44:17 by [docgen](https://github.com/thedevsaddam/docgen)

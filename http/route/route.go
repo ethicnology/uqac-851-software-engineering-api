@@ -66,5 +66,6 @@ func myRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 	transferRouter.Post("/", transfer.Store).Validate(transfer.Post)
 	transferIdRouter := transferRouter.Subrouter("/{transfer_id:[0-9]+}")
 	transferIdRouter.Get("/", transfer.Show)
+	transferIdRouter.Get("/verify/{answer}", transfer.Verify)
 	transferIdRouter.Delete("/", transfer.Destroy)
 }
