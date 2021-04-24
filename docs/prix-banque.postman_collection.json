@@ -492,6 +492,30 @@
 					"response": []
 				},
 				{
+					"name": "verify",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/{{bank_id}}/transfers/11/verify/something",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"{{bank_id}}",
+								"transfers",
+								"11",
+								"verify",
+								"something"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "create",
 					"request": {
 						"method": "POST",

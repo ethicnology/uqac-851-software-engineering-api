@@ -44,7 +44,7 @@ func Store(response *goyave.Response, request *goyave.Request) {
 	// Email verificatoin
 	user := model.User{}
 	database.Conn().Where("email = ?", request.Params["email"]).First(&user)
-	if !user.Verified { // if verified is false
+	if user.Verified != true { // if verified is false
 		response.Status(http.StatusForbidden)
 	}
 	// Up to 10,000 first customers are credited with 1000.00$ on their account
@@ -88,28 +88,33 @@ func ComputeBalance(id uint64) float64 {
 	if id <= 10000 {
 		balance += 1000.0
 	}
-	spent := []model.Operation{}
-	database.Conn().Where(&model.Operation{SenderID: id}).Find(&spent)
-	acquittedInvoices := []model.Operation{}
-	database.Conn().Where(&model.Operation{BankID: id, Acquitted: true}).Find(&acquittedInvoices)
-	receivedTransfers := []model.Operation{}
-	database.Conn().Where(&model.Operation{BankID: id, Instant: true, Scheduled: false, Verified: true}).Or(&model.Operation{BankID: id, Scheduled: true, Instant: false, Verified: true}).Find(&receivedTransfers)
-	for _, outcome := range spent {
-		balance -= outcome.Amount
+	outcomeInvoices := []model.Operation{}
+	database.Conn().Where(&model.Operation{SenderID: id, Invoice: true, Acquitted: true}).Find(&outcomeInvoices)
+	outcomeTransfers := []model.Operation{}
+	database.Conn().Where(&model.Operation{SenderID: id, Transfer: true}).Find(&outcomeTransfers)
+	incomeInvoices := []model.Operation{}
+	database.Conn().Where(&model.Operation{BankID: id, Invoice: true, Acquitted: true}).Find(&incomeInvoices)
+	incomeTransfers := []model.Operation{}
+	database.Conn().Where(&model.Operation{BankID: id, Transfer: true, Instant: true, Scheduled: false, Verified: true}).Or(&model.Operation{BankID: id, Transfer: true, Scheduled: true, Instant: false, Verified: true}).Find(&incomeTransfers)
+	for _, outcomeInvoice := range outcomeInvoices {
+		balance -= outcomeInvoice.Amount
 	}
-	for _, invoice := range acquittedInvoices {
-		balance += invoice.Amount
+	for _, outcomeTransfer := range outcomeTransfers {
+		balance -= outcomeTransfer.Amount
 	}
-	today := time.Now()
+	for _, incomeInvoice := range incomeInvoices {
+		balance += incomeInvoice.Amount
+	}
 
-	for _, transfer := range receivedTransfers {
-		if transfer.Scheduled {
-			if transfer.Date.Before(today) || transfer.Date == today {
-				balance += transfer.Amount
+	today := time.Now()
+	for _, incomeTransfer := range incomeTransfers {
+		if incomeTransfer.Scheduled {
+			if incomeTransfer.Date.Before(today) || incomeTransfer.Date == today {
+				balance += incomeTransfer.Amount
 			}
 		}
-		if transfer.Instant {
-			balance += transfer.Amount
+		if incomeTransfer.Instant {
+			balance += incomeTransfer.Amount
 		}
 	}
 	return balance
