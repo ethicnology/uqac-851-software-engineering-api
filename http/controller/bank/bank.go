@@ -33,7 +33,7 @@ func Show(response *goyave.Response, request *goyave.Request) {
 			response.Error(err)
 		}
 		response.JSON(http.StatusOK, map[string]interface{}{
-			"id ":     bank.ID,
+			"id":      bank.ID,
 			"balance": computedBalance,
 		})
 	}
@@ -65,7 +65,7 @@ func Store(response *goyave.Response, request *goyave.Request) {
 			response.Error(err)
 		} else {
 			response.JSON(http.StatusCreated, map[string]interface{}{
-				"id ": bank.ID,
+				"id": bank.ID,
 			})
 		}
 	}

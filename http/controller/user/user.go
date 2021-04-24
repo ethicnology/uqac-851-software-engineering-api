@@ -37,7 +37,7 @@ func Store(response *goyave.Response, request *goyave.Request) {
 	} else {
 		SendEmail(request.String("email"), "Prix-Banque Account Verification", "Please proceed to email verification using the code : "+code)
 		response.JSON(http.StatusCreated, map[string]interface{}{
-			"id ": user.ID,
+			"id": user.ID,
 		})
 	}
 }
