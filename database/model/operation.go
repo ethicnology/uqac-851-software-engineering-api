@@ -18,6 +18,8 @@ type Operation struct {
 	DeletedAt gorm.DeletedAt `json:"deleted_at"`
 	ID        uint64         `json:"id" gorm:"primarykey"`
 	Amount    float64        `json:"amount"`
+	From      string         `json:"from"`
+	To        string         `json:"to"`
 	SenderID  uint64         `json:"sender_id" gorm:"not null"`
 	BankID    uint64         `json:"receiver_id" gorm:"not null"` // Foreign key of table bank
 	Invoice   bool           `json:"invoice"`
@@ -29,6 +31,8 @@ type Operation struct {
 	Date      time.Time      `json:"date"`
 	Question  string         `json:"question"`
 	Answer    string         `json:"answer"`
+	Verified  bool           `json:"verified"`
+	Try       uint           `json:"try"`
 }
 
 // func OperationGenerator() interface{} {

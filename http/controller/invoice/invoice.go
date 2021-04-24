@@ -16,6 +16,8 @@ type Invoice struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	ID        uint64    `json:"id"`
 	Amount    float64   `json:"amount"`
+	From      string    `json:"from"`
+	To        string    `json:"to"`
 	SenderID  uint64    `json:"sender_id"`
 	BankID    uint64    `json:"receiver_id"`
 	Invoice   bool      `json:"invoice"`
@@ -25,8 +27,9 @@ type Invoice struct {
 
 // Index invoices operations for a bank account
 func Index(response *goyave.Response, request *goyave.Request) {
+	userBankId := request.Extra["BankID"].(uint64)
 	invoices := []Invoice{}
-	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{Invoice: true, Transfer: false, BankID: request.Extra["BankID"].(uint64)}).Find(&invoices)
+	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{Invoice: true, Transfer: false, BankID: userBankId}).Or(&model.Operation{Invoice: true, Transfer: false, SenderID: userBankId}).Find(&invoices)
 	if response.HandleDatabaseError(result) {
 		response.JSON(http.StatusOK, invoices)
 	}
@@ -34,9 +37,10 @@ func Index(response *goyave.Response, request *goyave.Request) {
 
 // Show invoice operation for a bank account
 func Show(response *goyave.Response, request *goyave.Request) {
+	userBankId := request.Extra["BankID"].(uint64)
 	id, _ := strconv.ParseUint(request.Params["invoice_id"], 10, 64)
 	invoice := Invoice{}
-	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{ID: id, Invoice: true, Transfer: false, BankID: request.Extra["BankID"].(uint64)}).First(&invoice, id)
+	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{ID: id, Invoice: true, Transfer: false, BankID: userBankId}).Or(&model.Operation{ID: id, Invoice: true, Transfer: false, SenderID: userBankId}).First(&invoice, id)
 	if response.HandleDatabaseError(result) {
 		response.JSON(http.StatusOK, invoice)
 	}
@@ -44,36 +48,31 @@ func Show(response *goyave.Response, request *goyave.Request) {
 
 // Store invoice operation for a bank account
 func Store(response *goyave.Response, request *goyave.Request) {
-	operation := model.Operation{
-		Transfer:  false,
-		Invoice:   true,
-		Amount:    request.Numeric("amount"),
-		SenderID:  request.Extra["BankID"].(uint64),
-		BankID:    uint64(request.Numeric("receiver_id")),
-		Acquitted: request.Bool("acquitted"),
-		DueDate:   request.Date("due_date"),
-	}
-	if err := database.GetConnection().Create(&operation).Error; err != nil {
-		response.Error(err)
-	} else {
-		response.JSON(http.StatusCreated, map[string]interface{}{
-			"id": operation.ID,
-		})
-	}
-}
-
-// Update invoice operation
-func Update(response *goyave.Response, request *goyave.Request) {
-	id, _ := strconv.ParseUint(request.Params["invoice_id"], 10, 64)
-	operation := model.Operation{}
-	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{ID: id, Invoice: true, Transfer: false, BankID: request.Extra["BankID"].(uint64)}).First(&operation)
+	// Verify if receiver exist
+	owing := model.User{}
+	result := database.Conn().Where("email = ?", request.String("to")).First(&owing)
 	if response.HandleDatabaseError(result) {
-		if err := database.Conn().Model(&operation).Updates(model.Operation{
+		// Get the Bank account ID of receiver
+		owingBank := model.Bank{}
+		database.Conn().Where(&model.Bank{UserID: owing.ID}).First(&owingBank)
+		// Construct operation object
+		operation := model.Operation{
+			Transfer:  false,
+			Invoice:   true,
 			Amount:    request.Numeric("amount"),
+			From:      owing.Email,
+			To:        request.Extra["UserEmail"].(string),
+			SenderID:  owingBank.ID,
+			BankID:    request.Extra["BankID"].(uint64),
 			Acquitted: request.Bool("acquitted"),
 			DueDate:   request.Date("due_date"),
-		}).Error; err != nil {
+		}
+		if err := database.GetConnection().Create(&operation).Error; err != nil {
 			response.Error(err)
+		} else {
+			response.JSON(http.StatusCreated, map[string]interface{}{
+				"id": operation.ID,
+			})
 		}
 	}
 }

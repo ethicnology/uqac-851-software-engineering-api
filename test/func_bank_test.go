@@ -1,8 +1,6 @@
 package test
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
 	"testing"
 
@@ -77,23 +75,6 @@ func (suite *BankTestSuite) TestIndex() {
 	})
 }
 
-func (suite *BankTestSuite) TestUpdate() {
-	suite.RunServer(route.Register, func() {
-		headers := map[string]string{
-			"Content-Type":  "application/json",
-			"Authorization": "Bearer " + suite.Token,
-		}
-		body, _ := json.Marshal(&model.Bank{Balance: 100})
-		resp, err := suite.Patch("/users/"+suite.Email+"/banks/"+fmt.Sprint(suite.BankID), headers, bytes.NewReader(body))
-		suite.Nil(err)
-		suite.NotNil(resp)
-		if resp != nil {
-			defer resp.Body.Close()
-			suite.Equal(204, resp.StatusCode)
-		}
-	})
-}
-
 func (suite *BankTestSuite) TestShow() {
 	suite.RunServer(route.Register, func() {
 		headers := map[string]string{
@@ -106,12 +87,6 @@ func (suite *BankTestSuite) TestShow() {
 		if resp != nil {
 			defer resp.Body.Close()
 			suite.Equal(200, resp.StatusCode)
-			json := map[string]interface{}{}
-			err := suite.GetJSONBody(resp, &json)
-			suite.Nil(err)
-			if err == nil {
-				suite.Equal(suite.Balance, json["balance"])
-			}
 		}
 	})
 }

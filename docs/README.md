@@ -11,7 +11,6 @@
   * [destroy](#2-destroy)
   * [index](#3-index)
   * [show](#4-show)
-  * [update](#5-update)
 
 * [invoices](#invoices)
 
@@ -19,7 +18,6 @@
   * [destroy](#2-destroy-1)
   * [index](#3-index-1)
   * [show](#4-show-1)
-  * [update](#5-update-1)
 
 * [operations](#operations)
 
@@ -32,7 +30,6 @@
   * [destroy](#2-destroy-2)
   * [index](#3-index-2)
   * [show](#4-show-2)
-  * [update](#5-update-2)
 
 * [users](#users)
 
@@ -40,7 +37,7 @@
   * [destroy](#2-destroy-3)
   * [login](#3-login)
   * [show](#4-show-3)
-  * [update](#5-update-3)
+  * [update](#5-update)
   * [verify](#6-verify)
 
 
@@ -107,30 +104,6 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1
 
 
 
-### 5. update
-
-
-
-***Endpoint:***
-
-```bash
-Method: PATCH
-Type: RAW
-URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1
-```
-
-
-
-***Body:***
-
-```js        
-{
-    "balance": 5
-}
-```
-
-
-
 ## invoices
 
 
@@ -153,8 +126,8 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/operati
 
 ```js        
 {
-    "amount": 11,
-    "receiver_id": 1,
+    "to": "email@exist.pls",
+    "amount": 10,
     "acquitted": "false",
     "due_date": "2021-05-11"
 }
@@ -200,32 +173,6 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/invoice
 Method: GET
 Type: 
 URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/invoices/1
-```
-
-
-
-### 5. update
-
-
-
-***Endpoint:***
-
-```bash
-Method: PATCH
-Type: RAW
-URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/invoices/1
-```
-
-
-
-***Body:***
-
-```js        
-{
-    "amount": 17,
-    "acquitted": "false",
-    "due_date": "2021-05-11"
-}
 ```
 
 
@@ -284,8 +231,8 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfe
 
 ```js        
 {
-    "amount": 11,
-    "receiver_id": 1,
+    "to": "email@exist.pls",
+    "amount": 15,
     "scheduled": "true",
     "instant": "false",
     "date": "2021-04-22",
@@ -334,34 +281,6 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfe
 Method: GET
 Type: 
 URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers/11
-```
-
-
-
-### 5. update
-
-
-
-***Endpoint:***
-
-```bash
-Method: PATCH
-Type: RAW
-URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers/1
-```
-
-
-
-***Body:***
-
-```js        
-{
-    "amount": 20,
-    "scheduled": "true",
-    "date": "2021-05-11",
-    "question": "To be or not ?",
-    "answer": "To be..."
-}
 ```
 
 
@@ -504,4 +423,4 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/verify/GRVEmbM2
 
 ---
 [Back to top](#prix-banque)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-23 17:48:40 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-23 23:29:16 by [docgen](https://github.com/thedevsaddam/docgen)

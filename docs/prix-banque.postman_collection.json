@@ -266,35 +266,6 @@
 					"response": []
 				},
 				{
-					"name": "update",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"balance\": 5\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/users/{{email}}/banks/{{bank_id}}",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"users",
-								"{{email}}",
-								"banks",
-								"{{bank_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "destroy",
 					"request": {
 						"method": "DELETE",
@@ -426,7 +397,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"amount\": 11,\n    \"receiver_id\": 1,\n    \"acquitted\": \"false\",\n    \"due_date\": \"2021-05-11\"\n}",
+							"raw": "{\n    \"to\": \"email@exist.pls\",\n    \"amount\": 10,\n    \"acquitted\": \"false\",\n    \"due_date\": \"2021-05-11\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -445,37 +416,6 @@
 								"{{bank_id}}",
 								"operations",
 								"invoices"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"amount\": 17,\n    \"acquitted\": \"false\",\n    \"due_date\": \"2021-05-11\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/users/{{email}}/banks/{{bank_id}}/invoices/{{operation_id}}",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"users",
-								"{{email}}",
-								"banks",
-								"{{bank_id}}",
-								"invoices",
-								"{{operation_id}}"
 							]
 						}
 					},
@@ -558,7 +498,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"amount\": 11,\n    \"receiver_id\": 1,\n    \"scheduled\": \"true\",\n    \"instant\": \"false\",\n    \"date\": \"2021-04-22\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"To be...\"\n}",
+							"raw": "{\n    \"to\": \"email@exist.pls\",\n    \"amount\": 15,\n    \"scheduled\": \"true\",\n    \"instant\": \"false\",\n    \"date\": \"2021-04-22\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"To be...\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -576,37 +516,6 @@
 								"banks",
 								"{{bank_id}}",
 								"transfers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"amount\": 20,\n    \"scheduled\": \"true\",\n    \"date\": \"2021-05-11\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"To be...\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/users/{{email}}/banks/{{bank_id}}/transfers/{{operation_id}}",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"users",
-								"{{email}}",
-								"banks",
-								"{{bank_id}}",
-								"transfers",
-								"{{operation_id}}"
 							]
 						}
 					},
