@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
+	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/bank"
 
 	"goyave.dev/goyave/v3"
 	"goyave.dev/goyave/v3/database"
@@ -83,10 +84,15 @@ func Update(response *goyave.Response, request *goyave.Request) {
 	operation := model.Operation{}
 	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{ID: id, Invoice: true, Transfer: false, SenderID: userBankId}).First(&operation)
 	if response.HandleDatabaseError(result) {
-		if err := database.Conn().Model(&operation).Updates(model.Operation{
-			Acquitted: request.Bool("acquitted"),
-		}).Error; err != nil {
-			response.Error(err)
+		balance := bank.ComputeBalance(userBankId)
+		if operation.Amount > balance {
+			response.Status(http.StatusBadRequest)
+		} else {
+			if err := database.Conn().Model(&operation).Updates(model.Operation{
+				Acquitted: request.Bool("acquitted"),
+			}).Error; err != nil {
+				response.Error(err)
+			}
 		}
 	}
 }

@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
+	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/bank"
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/user"
 
 	"goyave.dev/goyave/v3"
@@ -55,38 +56,45 @@ func Show(response *goyave.Response, request *goyave.Request) {
 
 // Store transfers operation for a bank account
 func Store(response *goyave.Response, request *goyave.Request) {
-	// Verify if receiver exist
-	receiver := model.User{}
-	result := database.Conn().Where("email = ?", request.String("to")).First(&receiver)
-	if response.HandleDatabaseError(result) {
-		// Get the Bank account ID of receiver
-		receiverBank := model.Bank{}
-		database.Conn().Where(&model.Bank{UserID: receiver.ID}).First(&receiverBank)
-		// Construct operation object
-		operation := model.Operation{
-			Invoice:   false,
-			Transfer:  true,
-			From:      request.Extra["UserEmail"].(string),
-			To:        receiver.Email,
-			SenderID:  request.Extra["BankID"].(uint64),
-			BankID:    receiverBank.ID,
-			Amount:    request.Numeric("amount"),
-			Instant:   request.Bool("instant"),
-			Scheduled: request.Bool("scheduled"),
-			Date:      request.Date("date"),
-			Question:  request.String("question"),
-			Answer:    request.String("answer"),
-			Verified:  false,
-			Try:       0,
-		}
-		if err := database.GetConnection().Create(&operation).Error; err != nil {
-			response.Error(err)
-		} else {
-			response.JSON(http.StatusCreated, map[string]interface{}{
-				"id": operation.ID,
-			})
+	// Check if user have sufficient funds
+	balance := bank.ComputeBalance(request.Extra["BankID"].(uint64))
+	if request.Numeric("amount") > balance {
+		response.Status(http.StatusBadRequest)
+	} else {
+		// Verify if receiver exist
+		receiver := model.User{}
+		result := database.Conn().Where("email = ?", request.String("to")).First(&receiver)
+		if response.HandleDatabaseError(result) {
+			// Get the Bank account ID of receiver
+			receiverBank := model.Bank{}
+			database.Conn().Where(&model.Bank{UserID: receiver.ID}).First(&receiverBank)
+			// Construct operation object
+			operation := model.Operation{
+				Invoice:   false,
+				Transfer:  true,
+				From:      request.Extra["UserEmail"].(string),
+				To:        receiver.Email,
+				SenderID:  request.Extra["BankID"].(uint64),
+				BankID:    receiverBank.ID,
+				Amount:    request.Numeric("amount"),
+				Instant:   request.Bool("instant"),
+				Scheduled: request.Bool("scheduled"),
+				Date:      request.Date("date"),
+				Question:  request.String("question"),
+				Answer:    request.String("answer"),
+				Verified:  false,
+				Try:       0,
+			}
+			if err := database.GetConnection().Create(&operation).Error; err != nil {
+				response.Error(err)
+			} else {
+				response.JSON(http.StatusCreated, map[string]interface{}{
+					"id": operation.ID,
+				})
+			}
 		}
 	}
+
 }
 
 // Destroy transfer operation
