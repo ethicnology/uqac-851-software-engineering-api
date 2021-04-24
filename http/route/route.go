@@ -59,6 +59,7 @@ func myRoutes(parent *goyave.Router, authenticator goyave.Middleware) {
 	invoiceRouter.Post("/", invoice.Store).Validate(invoice.Post)
 	invoiceIdRouter := invoiceRouter.Subrouter("/{invoice_id:[0-9]+}")
 	invoiceIdRouter.Get("/", invoice.Show)
+	invoiceIdRouter.Patch("/", invoice.Update).Validate(invoice.Patch)
 	invoiceIdRouter.Delete("/", invoice.Destroy)
 
 	transferRouter := bankIdRouter.Subrouter("/transfers")

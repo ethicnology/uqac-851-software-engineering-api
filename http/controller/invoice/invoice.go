@@ -64,7 +64,7 @@ func Store(response *goyave.Response, request *goyave.Request) {
 			To:        request.Extra["UserEmail"].(string),
 			SenderID:  owingBank.ID,
 			BankID:    request.Extra["BankID"].(uint64),
-			Acquitted: request.Bool("acquitted"),
+			Acquitted: false,
 			DueDate:   request.Date("due_date"),
 		}
 		if err := database.GetConnection().Create(&operation).Error; err != nil {
@@ -81,7 +81,7 @@ func Update(response *goyave.Response, request *goyave.Request) {
 	userBankId := request.Extra["BankID"].(uint64)
 	id, _ := strconv.ParseUint(request.Params["invoice_id"], 10, 64)
 	operation := model.Operation{}
-	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{ID: id, Invoice: true, Transfer: false, BankID: userBankId}).Or(&model.Operation{ID: id, Invoice: true, Transfer: false, SenderID: userBankId}).First(&operation)
+	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{ID: id, Invoice: true, Transfer: false, SenderID: userBankId}).First(&operation)
 	if response.HandleDatabaseError(result) {
 		if err := database.Conn().Model(&operation).Updates(model.Operation{
 			Acquitted: request.Bool("acquitted"),
