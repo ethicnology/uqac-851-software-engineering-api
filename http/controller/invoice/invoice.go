@@ -77,6 +77,20 @@ func Store(response *goyave.Response, request *goyave.Request) {
 	}
 }
 
+func Update(response *goyave.Response, request *goyave.Request) {
+	userBankId := request.Extra["BankID"].(uint64)
+	id, _ := strconv.ParseUint(request.Params["invoice_id"], 10, 64)
+	operation := model.Operation{}
+	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{ID: id, Invoice: true, Transfer: false, BankID: userBankId}).Or(&model.Operation{ID: id, Invoice: true, Transfer: false, SenderID: userBankId}).First(&operation)
+	if response.HandleDatabaseError(result) {
+		if err := database.Conn().Model(&operation).Updates(model.Operation{
+			Acquitted: request.Bool("acquitted"),
+		}).Error; err != nil {
+			response.Error(err)
+		}
+	}
+}
+
 // Destroy invoice operation
 func Destroy(response *goyave.Response, request *goyave.Request) {
 	id, _ := strconv.ParseUint(request.Params["invoice_id"], 10, 64)
