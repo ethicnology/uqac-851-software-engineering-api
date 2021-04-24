@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "26cc3d34-0445-46da-b726-ddb31afd9ec2",
+		"_postman_id": "410da309-c655-4b29-8e4c-221c4d2189ab",
 		"name": "prix-banque",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -391,13 +391,44 @@
 					"response": []
 				},
 				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"acquitted\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users/{{email}}/banks/{{bank_id}}/invoices/{{operation_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{email}}",
+								"banks",
+								"{{bank_id}}",
+								"invoices",
+								"{{operation_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "create",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"to\": \"email@exist.pls\",\n    \"amount\": 10,\n    \"acquitted\": \"false\",\n    \"due_date\": \"2021-05-11\"\n}",
+							"raw": "{\n    \"to\": \"email@exist.pls\",\n    \"amount\": 10,\n    \"due_date\": \"2021-05-11\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -522,7 +553,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"to\": \"email@exist.pls\",\n    \"amount\": 15,\n    \"scheduled\": \"true\",\n    \"instant\": \"false\",\n    \"date\": \"2021-04-22\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"To be...\"\n}",
+							"raw": "{\n    \"to\": \"email@exist.pls\",\n    \"amount\": 15,\n    \"scheduled\": \"false\",\n    \"instant\": \"true\",\n    \"date\": \"2021-04-22\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"1234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -575,7 +606,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTUxMTcxNjksIm5iZiI6MTYxOTExNzE2OSwidXNlcmlkIjoidXNlcjFwcml4YmFucXVlQGdtYWlsLmNvbSJ9.GZgurQ5LpUdQ2wM806l5r019DC73qrNUZg5DQkancZw",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTUyOTIwMjEsIm5iZiI6MTYxOTI5MjAyMSwidXNlcmlkIjoidXNlcjFwcml4YmFucXVlQGdtYWlsLmNvbSJ9.f-dgITmXB_O2Z5_vbBuPnBuP8Zf1rGITVWIn6fhYRJo",
 				"type": "string"
 			}
 		]
@@ -620,6 +651,14 @@
 		{
 			"key": "operation_id",
 			"value": "1"
+		},
+		{
+			"key": "user1Token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTUyOTIwMjEsIm5iZiI6MTYxOTI5MjAyMSwidXNlcmlkIjoidXNlcjFwcml4YmFucXVlQGdtYWlsLmNvbSJ9.f-dgITmXB_O2Z5_vbBuPnBuP8Zf1rGITVWIn6fhYRJo"
+		},
+		{
+			"key": "user2Token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTUyOTE3NzcsIm5iZiI6MTYxOTI5MTc3NywidXNlcmlkIjoidXNlcjJwcml4YmFucXVlQGdtYWlsLmNvbSJ9.C-t2LsXxREHDUDlYY6f4ml_w9lPlfjXwk8RPqq3X1rk"
 		}
 	]
 }

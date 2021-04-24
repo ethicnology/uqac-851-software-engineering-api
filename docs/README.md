@@ -18,6 +18,7 @@
   * [destroy](#2-destroy-1)
   * [index](#3-index-1)
   * [show](#4-show-1)
+  * [update](#5-update)
 
 * [operations](#operations)
 
@@ -38,7 +39,7 @@
   * [destroy](#2-destroy-3)
   * [login](#3-login)
   * [show](#4-show-3)
-  * [update](#5-update)
+  * [update](#5-update-1)
   * [verify](#6-verify)
 
 
@@ -129,7 +130,6 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/operati
 {
     "to": "email@exist.pls",
     "amount": 10,
-    "acquitted": "false",
     "due_date": "2021-05-11"
 }
 ```
@@ -174,6 +174,30 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/invoice
 Method: GET
 Type: 
 URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/invoices/1
+```
+
+
+
+### 5. update
+
+
+
+***Endpoint:***
+
+```bash
+Method: PATCH
+Type: RAW
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/invoices/1
+```
+
+
+
+***Body:***
+
+```js        
+{
+    "acquitted": true
+}
 ```
 
 
@@ -234,11 +258,11 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfe
 {
     "to": "email@exist.pls",
     "amount": 15,
-    "scheduled": "true",
-    "instant": "false",
+    "scheduled": "false",
+    "instant": "true",
     "date": "2021-04-22",
     "question": "To be or not ?",
-    "answer": "To be..."
+    "answer": "1234"
 }
 ```
 
@@ -433,9 +457,11 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/verify/GRVEmbM2
 | password | 1c002df4bdb6cd88651c6c2e92a1d63ae0c016b2f96b6ffd452c0a6219dd33b7 |  |
 | bank_id | 1 |  |
 | operation_id | 1 |  |
+| user1Token | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTUyOTIwMjEsIm5iZiI6MTYxOTI5MjAyMSwidXNlcmlkIjoidXNlcjFwcml4YmFucXVlQGdtYWlsLmNvbSJ9.f-dgITmXB_O2Z5_vbBuPnBuP8Zf1rGITVWIn6fhYRJo |  |
+| user2Token | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTUyOTE3NzcsIm5iZiI6MTYxOTI5MTc3NywidXNlcmlkIjoidXNlcjJwcml4YmFucXVlQGdtYWlsLmNvbSJ9.C-t2LsXxREHDUDlYY6f4ml_w9lPlfjXwk8RPqq3X1rk |  |
 
 
 
 ---
 [Back to top](#prix-banque)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-24 00:44:17 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-24 15:34:18 by [docgen](https://github.com/thedevsaddam/docgen)

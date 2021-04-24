@@ -20,7 +20,7 @@ func Show(response *goyave.Response, request *goyave.Request) {
 
 // Store a user
 func Store(response *goyave.Response, request *goyave.Request) {
-	code, err := GenerateRandomString(32)
+	code, err := GenerateRandomString(8)
 	if err != nil {
 		panic(err)
 	}

@@ -110,7 +110,7 @@ func Verify(response *goyave.Response, request *goyave.Request) {
 	if response.HandleDatabaseError(result) {
 		transferId := strconv.FormatUint(transfer.ID, 10)
 		amount := fmt.Sprintf("%f", transfer.Amount)
-		if transfer.Try <= 3 {
+		if transfer.Try < 3 {
 			if transfer.Answer == answer {
 				user.SendEmail(transfer.From, "Prix-Banque Transfer n"+transferId+"Verified", "From "+transfer.From+" to "+transfer.To+" amount "+amount+"$")
 				user.SendEmail(transfer.To, "Prix-Banque Transfer n"+transferId+" Verified", "From "+transfer.From+" to "+transfer.To+" amount "+amount+"$")
@@ -131,7 +131,7 @@ func Verify(response *goyave.Response, request *goyave.Request) {
 				response.Status(http.StatusBadRequest)
 			}
 		}
-		if transfer.Try > 3 {
+		if transfer.Try >= 3 {
 			user.SendEmail(transfer.From, "Prix-Banque Transfer n"+transferId+" Blocked", "From "+transfer.From+" to "+transfer.To+" amount "+amount+"$")
 			user.SendEmail(transfer.To, "Prix-Banque Transfer n"+transferId+" Blocked", "From "+transfer.From+" to "+transfer.To+" amount "+amount+"$")
 			response.Status(http.StatusForbidden)
