@@ -101,7 +101,7 @@ func Store(response *goyave.Response, request *goyave.Request) {
 func Destroy(response *goyave.Response, request *goyave.Request) {
 	id, _ := strconv.ParseUint(request.Params["transfer_id"], 10, 64)
 	operation := model.Operation{}
-	result := database.Conn().Where(&model.Operation{ID: id, Invoice: false, Transfer: true, BankID: request.Extra["BankID"].(uint64)}).First(&operation)
+	result := database.Conn().Where(&model.Operation{ID: id, Invoice: false, Transfer: true, Verified: false, SenderID: request.Extra["BankID"].(uint64)}).First(&operation)
 	if response.HandleDatabaseError(result) {
 		if err := database.Conn().Delete(&operation).Error; err != nil {
 			response.Error(err)

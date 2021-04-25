@@ -353,7 +353,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/users/{{email}}/banks/1/invoices",
+							"raw": "{{URL}}/users/{{email}}/banks/{{bank_id}}/invoices",
 							"host": [
 								"{{URL}}"
 							],
@@ -361,7 +361,7 @@
 								"users",
 								"{{email}}",
 								"banks",
-								"1",
+								"{{bank_id}}",
 								"invoices"
 							]
 						}
@@ -428,7 +428,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"to\": \"email@exist.pls\",\n    \"amount\": 10,\n    \"due_date\": \"2021-05-11\"\n}",
+							"raw": "{\n    \"to\": \"user2prixbanque@gmail.com\",\n    \"amount\": 10,\n    \"due_date\": \"2021-05-11\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -506,7 +506,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/users/{{email}}/banks/{{bank_id}}/transfers/11",
+							"raw": "{{URL}}/users/{{email}}/banks/{{bank_id}}/transfers/{{operation_id}}",
 							"host": [
 								"{{URL}}"
 							],
@@ -516,7 +516,7 @@
 								"banks",
 								"{{bank_id}}",
 								"transfers",
-								"11"
+								"{{operation_id}}"
 							]
 						}
 					},
@@ -528,7 +528,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/users/{{email}}/banks/{{bank_id}}/transfers/11/verify/something",
+							"raw": "{{URL}}/users/{{email}}/banks/{{bank_id}}/transfers/{{operation_id}}/verify/something",
 							"host": [
 								"{{URL}}"
 							],
@@ -538,7 +538,7 @@
 								"banks",
 								"{{bank_id}}",
 								"transfers",
-								"11",
+								"{{operation_id}}",
 								"verify",
 								"something"
 							]
@@ -553,7 +553,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"to\": \"email@exist.pls\",\n    \"amount\": 15,\n    \"scheduled\": \"false\",\n    \"instant\": \"true\",\n    \"date\": \"2021-04-22\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"1234\"\n}",
+							"raw": "{\n    \"to\": \"user2prixbanque@gmail.com\",\n    \"amount\": 15,\n    \"scheduled\": \"false\",\n    \"instant\": \"true\",\n    \"date\": \"2021-04-22\",\n    \"question\": \"To be or not ?\",\n    \"answer\": \"1234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

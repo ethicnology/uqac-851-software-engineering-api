@@ -22,7 +22,7 @@ https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1</h4></a></di
 <strong class="request-method border-success">POST</strong>
 &nbsp;
 https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/operations/invoices</h4></a></div><div id=collapse-invoices-create class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
-&#34;to&#34;: &#34;email@exist.pls&#34;,
+&#34;to&#34;: &#34;user2prixbanque@gmail.com&#34;,
 &#34;amount&#34;: 10,
 &#34;due_date&#34;: &#34;2021-05-11&#34;
 }</span><div class=clearfix></div></div></div></div><div class="panel panel-danger" id=jump-invoices-destroy><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-danger data-toggle=collapse data-parent=#accordion-invoices href=#collapse-invoices-destroy><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>destroy</strong> &nbsp;|&nbsp;
@@ -53,7 +53,7 @@ https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/operations/1
 <strong class="request-method border-success">POST</strong>
 &nbsp;
 https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers</h4></a></div><div id=collapse-transfers-create class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
-&#34;to&#34;: &#34;email@exist.pls&#34;,
+&#34;to&#34;: &#34;user2prixbanque@gmail.com&#34;,
 &#34;amount&#34;: 15,
 &#34;scheduled&#34;: &#34;false&#34;,
 &#34;instant&#34;: &#34;true&#34;,
@@ -69,10 +69,10 @@ https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers/1<
 https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers</h4></a></div><div id=collapse-transfers-index class="panel-collapse collapse"><div class=panel-body></div></div></div><div class="panel panel-info" id=jump-transfers-show><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-info data-toggle=collapse data-parent=#accordion-transfers href=#collapse-transfers-show><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>show</strong> &nbsp;|&nbsp;
 <strong class="request-method border-info">GET</strong>
 &nbsp;
-https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers/11</h4></a></div><div id=collapse-transfers-show class="panel-collapse collapse"><div class=panel-body></div></div></div><div class="panel panel-info" id=jump-transfers-verify><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-info data-toggle=collapse data-parent=#accordion-transfers href=#collapse-transfers-verify><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>verify</strong> &nbsp;|&nbsp;
+https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers/1</h4></a></div><div id=collapse-transfers-show class="panel-collapse collapse"><div class=panel-body></div></div></div><div class="panel panel-info" id=jump-transfers-verify><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-info data-toggle=collapse data-parent=#accordion-transfers href=#collapse-transfers-verify><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>verify</strong> &nbsp;|&nbsp;
 <strong class="request-method border-info">GET</strong>
 &nbsp;
-https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers/11/verify/something</h4></a></div><div id=collapse-transfers-verify class="panel-collapse collapse"><div class=panel-body></div></div></div></div></div></div></div><div class="panel panel-default"><div class=panel-heading><h3 class=panel-title id=users>users
+https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers/1/verify/something</h4></a></div><div id=collapse-transfers-verify class="panel-collapse collapse"><div class=panel-body></div></div></div></div></div></div></div><div class="panel panel-default"><div class=panel-heading><h3 class=panel-title id=users>users
 <span class=badge>6</span></h3></div><div class=panel-body><p><div class=request-item><div class=panel-group id=accordion-users><div class="panel panel-success" id=jump-users-create><div class=panel-heading><small class="pull-right text-muted">raw</small>
 <a class=text-success data-toggle=collapse data-parent=#accordion-users href=#collapse-users-create><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>create</strong> &nbsp;|&nbsp;
 <strong class="request-method border-success">POST</strong>
@@ -117,4 +117,4 @@ if(IsJsonString(html)){var obj=JSON.parse(html);var formattedJson=JSON.stringify
 function IsJsonString(str){try{JSON.parse(str);}catch(e){return false;}
 return true;}
 String.prototype.replaceAll=function(replaceThis,withThis){var re=new RegExp(RegExp.quote(replaceThis),"g");return this.replace(re,withThis);};RegExp.quote=function(str){return str.replace(/([.?*+^$[\]\\(){}-])/g,"\\$1");};function syntaxHighlight(json){json=json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,function(match){var cls='number';if(/^"/.test(match)){if(/:$/.test(match)){cls='key';}else{cls='string';}}else if(/true|false/.test(match)){cls='boolean';}else if(/null/.test(match)){cls='null';}
-return '<span class="'+cls+'">'+match+'</span>';});}</script><br><br><footer class="navbar-default navbar-fixed-bottom"><div class=container-fluid><div class="span12 text-center"><span data-toggle=tooltip title="If the application help you, please feel free to give a star to the project in github. Your star inspire me to work more on open-source projects like this!">Made with <em class=love-color>&#9829;</em> by <a href=https://github.com/thedevsaddam target=_blank class=text-muted>thedevsaddam</a> | Generated at: 2021-04-24 15:34:14 by <a href=https://github.com/thedevsaddam/docgen target=_blank class=text-muted>docgen</a></span></div></div></footer>
+return '<span class="'+cls+'">'+match+'</span>';});}</script><br><br><footer class="navbar-default navbar-fixed-bottom"><div class=container-fluid><div class="span12 text-center"><span data-toggle=tooltip title="If the application help you, please feel free to give a star to the project in github. Your star inspire me to work more on open-source projects like this!">Made with <em class=love-color>&#9829;</em> by <a href=https://github.com/thedevsaddam target=_blank class=text-muted>thedevsaddam</a> | Generated at: 2021-04-24 20:26:18 by <a href=https://github.com/thedevsaddam/docgen target=_blank class=text-muted>docgen</a></span></div></div></footer>

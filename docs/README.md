@@ -128,7 +128,7 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/operati
 
 ```js        
 {
-    "to": "email@exist.pls",
+    "to": "user2prixbanque@gmail.com",
     "amount": 10,
     "due_date": "2021-05-11"
 }
@@ -256,7 +256,7 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfe
 
 ```js        
 {
-    "to": "email@exist.pls",
+    "to": "user2prixbanque@gmail.com",
     "amount": 15,
     "scheduled": "false",
     "instant": "true",
@@ -305,7 +305,7 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfe
 ```bash
 Method: GET
 Type: 
-URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers/11
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers/1
 ```
 
 
@@ -319,7 +319,7 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfe
 ```bash
 Method: GET
 Type: 
-URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers/11/verify/something
+URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/banks/1/transfers/1/verify/something
 ```
 
 
@@ -464,4 +464,4 @@ URL: https://dissidence.dev:9999/users/user1prixbanque@gmail.com/verify/GRVEmbM2
 
 ---
 [Back to top](#prix-banque)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-24 15:34:18 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-04-24 20:26:14 by [docgen](https://github.com/thedevsaddam/docgen)
