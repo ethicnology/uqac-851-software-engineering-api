@@ -55,7 +55,7 @@ func Verify(response *goyave.Response, request *goyave.Request) {
 			}
 			SendEmail(request.Params["email"], "Prix-Banque Account Verified", "Your account is now verified, you can create a bank account")
 		} else {
-			response.Status(http.StatusForbidden)
+			response.Status(http.StatusBadRequest)
 		}
 	}
 }
