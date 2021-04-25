@@ -1,12 +1,14 @@
 package invoice
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 	"time"
 
 	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
 	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/bank"
+	"github.com/ethicnology/uqac-851-software-engineering-api/http/controller/user"
 
 	"goyave.dev/goyave/v3"
 	"goyave.dev/goyave/v3/database"
@@ -71,9 +73,13 @@ func Store(response *goyave.Response, request *goyave.Request) {
 		if err := database.GetConnection().Create(&operation).Error; err != nil {
 			response.Error(err)
 		} else {
+			operationId := strconv.FormatUint(operation.ID, 10)
+			amount := fmt.Sprintf("%f", operation.Amount)
 			response.JSON(http.StatusCreated, map[string]interface{}{
 				"id": operation.ID,
 			})
+			user.SendEmail(operation.From, "Prix-Banque Invoice n"+operationId+" To Fullfill", "From "+operation.From+" to "+operation.To+" amount "+amount+"$")
+			user.SendEmail(operation.To, "Prix-Banque Invoice n"+operationId+" Created", "From "+operation.From+" to "+operation.To+" amount "+amount+"$")
 		}
 	}
 }
@@ -84,6 +90,8 @@ func Update(response *goyave.Response, request *goyave.Request) {
 	operation := model.Operation{}
 	result := database.Conn().Model(model.Operation{}).Where(&model.Operation{ID: id, Invoice: true, Transfer: false, SenderID: userBankId}).First(&operation)
 	if response.HandleDatabaseError(result) {
+		operationId := strconv.FormatUint(operation.ID, 10)
+		amount := fmt.Sprintf("%f", operation.Amount)
 		balance := bank.ComputeBalance(userBankId)
 		if operation.Amount > balance {
 			response.Status(http.StatusBadRequest)
@@ -93,6 +101,8 @@ func Update(response *goyave.Response, request *goyave.Request) {
 			}).Error; err != nil {
 				response.Error(err)
 			}
+			user.SendEmail(operation.From, "Prix-Banque Invoice n"+operationId+" Completed", "From "+operation.From+" to "+operation.To+" amount "+amount+"$")
+			user.SendEmail(operation.To, "Prix-Banque Invoice n"+operationId+" Completed", "From "+operation.From+" to "+operation.To+" amount "+amount+"$")
 		}
 	}
 }
@@ -101,7 +111,7 @@ func Update(response *goyave.Response, request *goyave.Request) {
 func Destroy(response *goyave.Response, request *goyave.Request) {
 	id, _ := strconv.ParseUint(request.Params["invoice_id"], 10, 64)
 	operation := model.Operation{}
-	result := database.Conn().Where(&model.Operation{ID: id, Invoice: true, Transfer: false, BankID: request.Extra["BankID"].(uint64)}).First(&operation)
+	result := database.Conn().Where(&model.Operation{ID: id, Invoice: true, Transfer: false, Acquitted: false, BankID: request.Extra["BankID"].(uint64)}).First(&operation)
 	if response.HandleDatabaseError(result) {
 		if err := database.Conn().Delete(&operation).Error; err != nil {
 			response.Error(err)
