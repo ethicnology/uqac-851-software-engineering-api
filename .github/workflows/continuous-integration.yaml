@@ -2,7 +2,7 @@
 name: integration
 on: [push, pull_request]
 jobs:          
- build:
+  build:
     name: Try to build the project
     runs-on: ubuntu-latest
     steps:
