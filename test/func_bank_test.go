@@ -9,6 +9,7 @@ import (
 	"goyave.dev/goyave/v3"
 	"goyave.dev/goyave/v3/auth"
 	"goyave.dev/goyave/v3/database"
+	_ "goyave.dev/goyave/v3/database/dialect/mysql"
 )
 
 type BankTestSuite struct {
@@ -54,7 +55,8 @@ func (suite *BankTestSuite) TestStore() {
 		suite.NotNil(resp)
 		if resp != nil {
 			defer resp.Body.Close()
-			suite.Equal(201, resp.StatusCode)
+			// 400 Because account should be email verified
+			suite.Equal(400, resp.StatusCode)
 		}
 	})
 }

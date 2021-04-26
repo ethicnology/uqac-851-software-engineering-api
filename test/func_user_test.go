@@ -10,6 +10,7 @@ import (
 	"goyave.dev/goyave/v3"
 	"goyave.dev/goyave/v3/auth"
 	"goyave.dev/goyave/v3/database"
+	_ "goyave.dev/goyave/v3/database/dialect/mysql"
 )
 
 type UserTestSuite struct {

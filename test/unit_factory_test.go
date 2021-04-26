@@ -6,6 +6,7 @@ import (
 	"github.com/ethicnology/uqac-851-software-engineering-api/database/model"
 	"goyave.dev/goyave/v3"
 	"goyave.dev/goyave/v3/database"
+	_ "goyave.dev/goyave/v3/database/dialect/mysql"
 )
 
 type FactoryTestSuite struct {
