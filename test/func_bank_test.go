@@ -54,7 +54,8 @@ func (suite *BankTestSuite) TestStore() {
 		suite.NotNil(resp)
 		if resp != nil {
 			defer resp.Body.Close()
-			suite.Equal(201, resp.StatusCode)
+			// 400 Because account should be email verified
+			suite.Equal(400, resp.StatusCode)
 		}
 	})
 }
