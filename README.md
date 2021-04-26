@@ -68,7 +68,7 @@ If you want to run the tests, you need to **specify the SMTP password in the con
         "smtp_host":"smtp.gmail.com",
         "smtp_port":"587",
         "smtp_user":"prixbanque@gmail.com",
-        "smtp_pass":"<AskStudentsForThePassword>"
+        "smtp_pass":"" //Ask Students For The Password
     }
 }
 ```
@@ -100,22 +100,22 @@ Instead you can try it with your CLI using **cURL**.
 ##### Windows
 Windows force you to mask doublequotes with backslash like this : 
 ```powershell
-curl -d "{\"email\":\"sensei@uqac.ca\",\"password\":\"Str0ng\"}" -H "Content-Type: application/json" -X POST http://172.20.0.3:1984/auth/register
+curl -d "{\"email\":\"existing@email.pls\",\"password\":\"Str0ng\"}" -H "Content-Type: application/json" -X POST http://172.20.0.3:1984/auth/register
 ```
 ##### Linux
 ```sh
-curl -d '{"email":"sensei@uqac.ca","password":"Str0ng"}' -H 'Content-Type: application/json' -X POST http://172.20.0.3:1984/auth/register
+curl -d '{"email":"existing@email.pls","password":"Str0ng"}' -H 'Content-Type: application/json' -X POST http://172.20.0.3:1984/auth/register
 # {"id":9}
 ```
 
 ```sh
-curl -d '{"email":"sensei@uqac.ca","password":"Str0ng"}' -H 'Content-Type: application/json' -X POST http://172.20.0.3:1984/auth/login
+curl -d '{"email":"existing@email.pls","password":"Str0ng"}' -H 'Content-Type: application/json' -X POST http://172.20.0.3:1984/auth/login
 # {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTM0NzkyNDQsIm5iZiI6MTYxNzQ3OTI0NCwidXNlcmlkIjoic2Vuc2VpQHVxYWMuY2EifQ.aMRWeebCTfJyUPfsUz5H8Ng1x1L1T10hSKpXoVdyPUY"}
 ```
 
 ```sh
-TOKEN=$YourToken;curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" -X GET http://172.20.0.3:1984/users/sensei@uqac.ca
-# {"created_at":"2021-04-03T19:47:19.718Z","updated_at":"2021-04-03T19:47:19.718Z","deleted_at":null,"id":10,"email":"sensei@uqac.ca","first_name":"","last_name":""}
+TOKEN=$YourToken;curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" -X GET http://172.20.0.3:1984/users/existing@email.pls
+# {"created_at":"2021-04-03T19:47:19.718Z","updated_at":"2021-04-03T19:47:19.718Z","deleted_at":null,"id":10,"email":"existing@email.pls","first_name":"","last_name":""}
 ```
 
 ### :hammer: Build from scratch
