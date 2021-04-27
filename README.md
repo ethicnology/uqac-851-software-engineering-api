@@ -77,7 +77,7 @@ If you want to run the tests, you need to **specify the SMTP password in the con
 ### :whale: Run with docker
 ```sh
 docker-compose up
-# Available on 172.20.0.3:1984
+# Available on 172.x.x.x:1984
 ```
 
 ### :pray: Tests
@@ -96,26 +96,27 @@ All available endpoints are documented with examples.
 
 #### cURL
 Instead you can try it with your CLI using **cURL**.  
+On following examples URL is : **https://dissidence.dev:9999** you can change this by your docker IP using **http** without ssl
 
 ##### Windows
 Windows force you to mask doublequotes with backslash like this : 
 ```powershell
-curl -d "{\"email\":\"existing@email.pls\",\"password\":\"Str0ng\"}" -H "Content-Type: application/json" -X POST http://172.20.0.3:1984/auth/register
+curl -d "{\"email\":\"existing@email.pls\",\"password\":\"Str0ng\",\"first_name\":\"Paul\",\"last_name\":\"Lefevbre\"}" -H "Content-Type: application/json" -X POST https://dissidence.dev:9999/auth/register
 ```
 ##### Linux
 ```sh
-curl -d '{"email":"existing@email.pls","password":"Str0ng"}' -H 'Content-Type: application/json' -X POST http://172.20.0.3:1984/auth/register
+curl -d '{"email":"existing@email.pls","password":"Str0ng","first_name":"Paul","last_name":"Lefevbre"}' -H 'Content-Type: application/json' -X POST https://dissidence.dev:9999/auth/register
 # {"id":9}
 ```
 
 ```sh
-curl -d '{"email":"existing@email.pls","password":"Str0ng"}' -H 'Content-Type: application/json' -X POST http://172.20.0.3:1984/auth/login
+curl -d '{"email":"existing@email.pls","password":"Str0ng"}' -H 'Content-Type: application/json' -X POST https://dissidence.dev:9999/auth/login
 # {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTM0NzkyNDQsIm5iZiI6MTYxNzQ3OTI0NCwidXNlcmlkIjoic2Vuc2VpQHVxYWMuY2EifQ.aMRWeebCTfJyUPfsUz5H8Ng1x1L1T10hSKpXoVdyPUY"}
 ```
 
 ```sh
-TOKEN=$YourToken;curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" -X GET http://172.20.0.3:1984/users/existing@email.pls
-# {"created_at":"2021-04-03T19:47:19.718Z","updated_at":"2021-04-03T19:47:19.718Z","deleted_at":null,"id":10,"email":"existing@email.pls","first_name":"","last_name":""}
+TOKEN=$YourToken;curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" -X GET https://dissidence.dev:9999/users/existing@email.pls
+# {"created_at":"2021-04-03T19:47:19.718Z","updated_at":"2021-04-03T19:47:19.718Z","deleted_at":null,"id":10,"email":"existing@email.pls","first_name":"Paul","last_name":"Lefebvre"}
 ```
 
 ### :hammer: Build from scratch
@@ -148,5 +149,5 @@ Then, run :
 ./uqac-851-software-engineering-api
 ```
 ## :mag: Contact
-ethicnology - [@ethicnology](https://twitter.com/ethicnology)  
+[@ethicnology](https://twitter.com/ethicnology)  
 Project Link: [https://github.com/851-software-engineering](https://github.com/851-software-engineering)
